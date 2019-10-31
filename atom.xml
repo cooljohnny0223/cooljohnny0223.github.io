@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>尚豪 Johnny&#39;Blog</title>
   
-  
+  <subtitle>資訊部落格</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cooljohnny.github.io/"/>
