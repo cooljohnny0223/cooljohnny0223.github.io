@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cooljohnny.github.io/"/>
-  <updated>2019-11-01T13:51:37.036Z</updated>
+  <updated>2019-11-02T02:04:55.649Z</updated>
   <id>http://cooljohnny.github.io/</id>
   
   <author>
@@ -17,11 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CentOS 7 Minimal架站技術篇/2019-11-02_CentOS 7 Minimal架站技術篇(一)</title>
+    <link href="http://cooljohnny.github.io/2019/11/02/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-02_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B8%80)/"/>
+    <id>http://cooljohnny.github.io/2019/11/02/CentOS 7 Minimal架站技術篇/2019-11-02_CentOS 7 Minimal架站技術篇(一)/</id>
+    <published>2019-11-02T02:02:45.863Z</published>
+    <updated>2019-11-02T02:04:55.649Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="CentOS-7-Minimal架站技術篇-一-安裝CentOS-7-Minimal-作業系統"><a href="#CentOS-7-Minimal架站技術篇-一-安裝CentOS-7-Minimal-作業系統" class="headerlink" title="CentOS 7 Minimal架站技術篇(一) 安裝CentOS 7 Minimal 作業系統"></a>CentOS 7 Minimal架站技術篇(一) 安裝CentOS 7 Minimal 作業系統</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;CentOS-7-Minimal架站技術篇-一-安裝CentOS-7-Minimal-作業系統&quot;&gt;&lt;a href=&quot;#CentOS-7-Minimal架站技術篇-一-安裝CentOS-7-Minimal-作業系統&quot; class=&quot;headerlink&quot; title
+      
+    
+    </summary>
+    
+    
+      <category term="CentOS 7" scheme="http://cooljohnny.github.io/categories/CentOS-7/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>CentOS 7 Minimal架站技術篇/2019-11-01-1_CentOS 7 Minimal架站技術篇(目錄)</title>
     <link href="http://cooljohnny.github.io/2019/11/01/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-01-1_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E7%9B%AE%E9%8C%84)/"/>
     <id>http://cooljohnny.github.io/2019/11/01/CentOS 7 Minimal架站技術篇/2019-11-01-1_CentOS 7 Minimal架站技術篇(目錄)/</id>
     <published>2019-11-01T13:25:19.828Z</published>
-    <updated>2019-11-01T13:51:37.036Z</updated>
+    <updated>2019-11-02T02:03:58.312Z</updated>
     
     <content type="html"><![CDATA[<h1 id="CentOS-7-Minimal架站技術篇-目錄"><a href="#CentOS-7-Minimal架站技術篇-目錄" class="headerlink" title="CentOS 7 Minimal架站技術篇(目錄)"></a>CentOS 7 Minimal架站技術篇(目錄)</h1><p>一、安裝CentOS 7 Minimal 作業系統<br>二、安裝SSH+使用Putty連線至安裝好的CentOS 7終端機<br>三、安裝好用工具 mc unzip nmap wget<br>四、安裝vsftpd+ftp，使用FileZilla連線至FTP服務<br>五、安裝ASP.Net Core 套件 dotnet<br>六、安裝Ngnix網站伺服器<br>七、安裝MySql+使用外部Heidisql連線測試<br>八、安裝MongoDB+使用外部Robo3t連線測試<br>九、設定ASP.Net Core Service<br>十、設定Ngnix網站伺服器設定檔<br>十一、設定防火牆<br>十二、建立使用者帳戶<br>十三、設定使用者連線FTP權限與資料夾權限<br>十四、使用Visual Studio 2017建立空白ASP.Net Core後，使用FileZilla上傳至CentOS 7 Ngnix測試<br>十五、CentOS 7 Minimal架站技術篇(結論)<br>     可補充內容：<br>     建立多個網站服務的方式？<br>     設定Domain Name連線？</p>]]></content>
     
@@ -35,27 +59,7 @@
     </summary>
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-01_CentOS 7 Minimal架站技術篇(一)</title>
-    <link href="http://cooljohnny.github.io/2019/11/01/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-01_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B8%80)/"/>
-    <id>http://cooljohnny.github.io/2019/11/01/CentOS 7 Minimal架站技術篇/2019-11-01_CentOS 7 Minimal架站技術篇(一)/</id>
-    <published>2019-11-01T13:22:01.125Z</published>
-    <updated>2019-11-01T13:27:18.534Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="CentOS-7-Minimal架站技術篇-一-安裝CentOS-7-Minimal-作業系統"><a href="#CentOS-7-Minimal架站技術篇-一-安裝CentOS-7-Minimal-作業系統" class="headerlink" title="CentOS 7 Minimal架站技術篇(一) 安裝CentOS 7 Minimal 作業系統"></a>CentOS 7 Minimal架站技術篇(一) 安裝CentOS 7 Minimal 作業系統</h1>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;CentOS-7-Minimal架站技術篇-一-安裝CentOS-7-Minimal-作業系統&quot;&gt;&lt;a href=&quot;#CentOS-7-Minimal架站技術篇-一-安裝CentOS-7-Minimal-作業系統&quot; class=&quot;headerlink&quot; title
-      
-    
-    </summary>
-    
+      <category term="CentOS 7" scheme="http://cooljohnny.github.io/categories/CentOS-7/"/>
     
     
   </entry>
