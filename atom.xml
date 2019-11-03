@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cooljohnny.github.io/"/>
-  <updated>2019-11-03T02:47:07.159Z</updated>
+  <updated>2019-11-03T13:41:52.278Z</updated>
   <id>http://cooljohnny.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://cooljohnny.github.io/2019/11/02/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-02_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B8%80)%20%20%E5%AE%89%E8%A3%9DCentOS%207%20Minimal%20%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1/"/>
     <id>http://cooljohnny.github.io/2019/11/02/CentOS 7 Minimal架站技術篇/2019-11-02_CentOS 7 Minimal架站技術篇(一)  安裝CentOS 7 Minimal 作業系統/</id>
     <published>2019-11-02T02:02:45.863Z</published>
-    <updated>2019-11-03T02:47:07.159Z</updated>
+    <updated>2019-11-03T13:41:52.278Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="環境架設"><a href="#環境架設" class="headerlink" title="環境架設"></a>環境架設</h1><h2 id="Windows-10-企業版-1803"><a href="#Windows-10-企業版-1803" class="headerlink" title="Windows 10 企業版 1803"></a>Windows 10 企業版 1803</h2><h2 id="虛擬主機-VirtualBox-6-0-14-133895"><a href="#虛擬主機-VirtualBox-6-0-14-133895" class="headerlink" title="虛擬主機 VirtualBox-6.0.14-133895"></a>虛擬主機 VirtualBox-6.0.14-133895</h2><p><a href="https://download.virtualbox.org/virtualbox/6.0.14/VirtualBox-6.0.14-133895-Win.exe" target="_blank" rel="noopener">https://download.virtualbox.org/virtualbox/6.0.14/VirtualBox-6.0.14-133895-Win.exe</a></p><h2 id="CentOS-7-x86-64-Minimal-1908-iso"><a href="#CentOS-7-x86-64-Minimal-1908-iso" class="headerlink" title="CentOS-7-x86_64-Minimal-1908.iso"></a>CentOS-7-x86_64-Minimal-1908.iso</h2><p><a href="http://mirror.team-cymru.com/CentOS/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso" target="_blank" rel="noopener">http://mirror.team-cymru.com/CentOS/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso</a></p><h1 id="開始"><a href="#開始" class="headerlink" title="開始"></a>開始</h1><p><img src="/images/15727492238727.jpg" alt=""></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="環境架設"><a href="#環境架設" class="headerlink" title="環境架設"></a>環境架設</h1><h2 id="Windows-10-企業版-1803"><a href="#Windows-10-企業版-1803" class="headerlink" title="Windows 10 企業版 1803"></a>Windows 10 企業版 1803</h2><h2 id="虛擬主機-VirtualBox-6-0-14-133895"><a href="#虛擬主機-VirtualBox-6-0-14-133895" class="headerlink" title="虛擬主機 VirtualBox-6.0.14-133895"></a>虛擬主機 VirtualBox-6.0.14-133895</h2><p><a href="https://download.virtualbox.org/virtualbox/6.0.14/VirtualBox-6.0.14-133895-Win.exe" target="_blank" rel="noopener">https://download.virtualbox.org/virtualbox/6.0.14/VirtualBox-6.0.14-133895-Win.exe</a></p><h2 id="CentOS-7-x86-64-Minimal-1908-iso"><a href="#CentOS-7-x86-64-Minimal-1908-iso" class="headerlink" title="CentOS-7-x86_64-Minimal-1908.iso"></a>CentOS-7-x86_64-Minimal-1908.iso</h2><p><a href="http://mirror.team-cymru.com/CentOS/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso" target="_blank" rel="noopener">http://mirror.team-cymru.com/CentOS/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso</a></p><h1 id="開始"><a href="#開始" class="headerlink" title="開始"></a>開始</h1>]]></content>
     
     <summary type="html">
     
