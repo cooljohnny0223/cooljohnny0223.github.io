@@ -418,8 +418,8 @@
     <title>2019-10-31_初次使用MWEB HEXO至github</title>
     <link href="http://cooljohnny.github.io/2019/10/31/2019-10-31_%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8MWEB%20HEXO%E8%87%B3github/"/>
     <id>http://cooljohnny.github.io/2019/10/31/2019-10-31_初次使用MWEB HEXO至github/</id>
-    <published>2019-10-31T14:08:59.912Z</published>
-    <updated>2019-10-31T14:13:03.310Z</updated>
+    <published>2019-10-30T16:00:00.000Z</published>
+    <updated>2019-11-05T16:08:29.800Z</updated>
     
     <content type="html"><![CDATA[<h1 id="發佈文章相關指令"><a href="#發佈文章相關指令" class="headerlink" title="發佈文章相關指令"></a>發佈文章相關指令</h1><p>1、打開終端機  進入使用者 johnny/blog下<br>2、清除緩存並且更新  hexo clean hexo g<br>3、本地預覽, 確認內容有沒有錯誤 hexo s<br>4、發佈上線 hexo d<br>5、如果對操作很熟悉，並且不需要預覽的話，也可以使用 hexo g -d 直接發佈</p><p><img src="/images/%E9%85%B7ma%E8%90%8C.png" alt="酷ma萌"></p>]]></content>
     
@@ -432,6 +432,8 @@
     
     </summary>
     
+    
+      <category term="Hexo Blog" scheme="http://cooljohnny.github.io/categories/Hexo-Blog/"/>
     
     
   </entry>
