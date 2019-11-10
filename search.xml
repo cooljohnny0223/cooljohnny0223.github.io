@@ -1,308 +1,330 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-05_CentOS 7 Minimal架站技術篇(四)  安裝vsftpd+ftp，使用FileZilla連線至FTP服務</title>
-    <url>/2019/11/05/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-05_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%9B%9B)%20%20%E5%AE%89%E8%A3%9Dvsftpd+ftp%EF%BC%8C%E4%BD%BF%E7%94%A8FileZilla%E9%80%A3%E7%B7%9A%E8%87%B3FTP%E6%9C%8D%E5%8B%99/</url>
-    <content><![CDATA[<h1 id="連線FTP伺服器應用軟體"><a href="#連線FTP伺服器應用軟體" class="headerlink" title="連線FTP伺服器應用軟體"></a>連線FTP伺服器應用軟體</h1><p>應用軟體名稱 FileZilla<br><a href="https://filezilla-project.org/" target="_blank" rel="noopener">https://filezilla-project.org/</a></p>
-<p>可以安裝免安裝與裝學<br>參考網址位址(FileZilla v3.45.1 免費 FTP 傳檔軟體（繁體中文免安裝版，無廣告)：<br><a href="https://briian.com/5627/" target="_blank" rel="noopener">https://briian.com/5627/</a></p>
-<h1 id="安裝-vsftpd服務"><a href="#安裝-vsftpd服務" class="headerlink" title="安裝 vsftpd服務"></a>安裝 vsftpd服務</h1><p>指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo yum -y install vsftpd</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-54.jpg" alt="YUNYU-JOHNNY-P"></p>
-<h1 id="安裝vfp服務"><a href="#安裝vfp服務" class="headerlink" title="安裝vfp服務"></a>安裝vfp服務</h1><p>指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo yum install ftp</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-55.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>輸入：y<br><img src="/images/YUNYU-JOHNNY-PC-56.jpg" alt="YUNYU-JOHNNY-P"></p>
-<h1 id="修改設定檔"><a href="#修改設定檔" class="headerlink" title="修改設定檔"></a>修改設定檔</h1><p>1、使用指令開啟<br>指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/vsftpd/vsftpd.conf</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-57.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>限制使用者離開家目錄，只有chroot_list名單中的使用者，才可以離開家目錄(給管理者用)</p>
-<p>anonymous_enable=NO<br><img src="/images/YUNYU-JOHNNY-PC-58.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>找到下列，將前面#刪除<br>chroot_list_enable=YES<br>chroot_list_file=/etc/vsftpd/chroot_list<br>chroot_local_user=YES<br><img src="/images/YUNYU-JOHNNY-PC-59.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>讓使用者可以用檔案總管方式上傳檔案<br>connect_from_port_20=NO<br>pasv_enable=YES</p>
-<p><img src="/images/YUNYU-JOHNNY-PC-60.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p><code>註：IE瀏覽器無法使用FTP功能，但可以用檔案總管的方式來克服此問題</code></p>
-<p>完成後按「Esc」離開編輯模式後，按「:」「wq」存檔離開</p>
-<p>2、外部新增檔案chroot_list加入管理者名單  範例：只允許johnny帳號<br>指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd /etc/vsftpd</span><br><span class="line">sudo touch chroot_list</span><br><span class="line">sudo vi chroot_list</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-63.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p> 加入使用者帳號 範例：johnny<br><img src="/images/YUNYU-JOHNNY-PC-62.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>完成後按「Esc」離開編輯模式後，按「:」「wq」存檔離開</p>
-<p>3、啟動vsftpd服務<br>指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo systemctl start vsftpd</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-64.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>4、設定開機啟動vsftpd服務<br>指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo systemctl enable vsftpd</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-65.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>5、開啟防火牆設定 ftp port 21 並且重新啟動防火牆<br>指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo firewall-cmd --zone=public --add-port=21/tcp --permanent</span><br><span class="line">sudo systemctl restart firewalld</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-66.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>6、設定使用者 FTP目錄執行權限<br>7 = 4 (讀) + 2 (寫) + 1 (執行)<br>5 = 4 (讀) + 1 (執行)<br>4 = 4 (讀)<br>指令： chmod 777 權限全開通</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo chmod 777 /home/johnny/</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-69.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>查詢權限指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -al</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-70.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p><code>註：dr目錄 wxr 管理者 wxr 群組 wxr 一般使用者，所以777 皆可寫+讀+執行</code></p>
-<p>7、重新啟動伺服器<br>指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo reboot now</span><br></pre></td></tr></table></figure>
-
-<h1 id="Windows-10使用FileZilla檔案傳輸軟體連線虛擬主機ftp伺服器"><a href="#Windows-10使用FileZilla檔案傳輸軟體連線虛擬主機ftp伺服器" class="headerlink" title="Windows 10使用FileZilla檔案傳輸軟體連線虛擬主機ftp伺服器"></a>Windows 10使用FileZilla檔案傳輸軟體連線虛擬主機ftp伺服器</h1><p>1、開啟FileZilla檔案傳輸軟體，點選工具列「檔案」-&gt;「站台管理員」-&gt;「新增站台」<br>設定選擇「SFTP」，輸入主機：「IP位址」、輸入使用者：「帳號」與密碼：「密碼」，範例如下圖，最後「連線」<br><img src="/images/YUNYU-JOHNNY-PC-72.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>2、成功連線如下圖所示<br><img src="/images/YUNYU-JOHNNY-PC-73.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>3、恭禧您，成功連線FTP了，可以再前往下一篇了</p>
-]]></content>
+<search> 
+  
+  
+    
+    <entry>
+      <title>CentOS 7 Minimal架站技術篇/2019-11-16_CentOS 7 Minimal架站技術篇(十五)  CentOS 7 Minimal架站技術篇(結論)</title>
+      <link href="/2019/11/16/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-16_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81%E4%BA%94)%20%20CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E7%B5%90%E8%AB%96)/"/>
+      <url>/2019/11/16/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-16_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81%E4%BA%94)%20%20CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E7%B5%90%E8%AB%96)/</url>
+      
+        <content type="html"><![CDATA[<p>#</p>]]></content>
+      
+      
       <categories>
-        <category>CentOS 7 架站</category>
+          
+          <category> CentOS 7 架站 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-04_CentOS 7 Minimal架站技術篇(三)  安裝好用工具 mc unzip nmap wget</title>
-    <url>/2019/11/04/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-04_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B8%89)%20%20%E5%AE%89%E8%A3%9D%E5%A5%BD%E7%94%A8%E5%B7%A5%E5%85%B7%20mc%20unzip%20nmap%20wget/</url>
-    <content><![CDATA[<h1 id="安裝好用的工具"><a href="#安裝好用的工具" class="headerlink" title="安裝好用的工具"></a>安裝好用的工具</h1><p>1、mc 類似以前dos環境下的 pctools<br>2、nmap 網路查詢與管理的好幫手<br>3、unzip 解壓縮工具<br>4、wget 下載的好工具</p>
-<h1 id="開始安裝"><a href="#開始安裝" class="headerlink" title="開始安裝"></a>開始安裝</h1><p>1、一次下載上述好用的工具</p>
-<p>指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo yum install mc nmap unzip wget -y</span><br></pre></td></tr></table></figure>
-<p><code>請記得您使用Putty連線嚕，所以可以用複鍵指令，然後再終端機上按滑鼠右鍵，就可以把複製的指令貼上嚕</code><br><img src="/images/YUNYU-JOHNNY-PC-51.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>2、安裝完成如下圖<br><img src="/images/YUNYU-JOHNNY-PC-52.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>3、指行工具mc測試  其他工具往後有用到再說嚕</p>
-<p>指令： 如需使用mc修改設定檔，請記得前面加上<code>sudo</code>即可</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mc</span><br></pre></td></tr></table></figure>
-<p>畫面如下：<br><img src="/images/YUNYU-JOHNNY-PC-53.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>4、恭禧您~這篇就是這麼簡單，完成了，請進入下一篇</p>
-]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS 7 Minimal架站技術篇/2019-11-15_CentOS 7 Minimal架站技術篇(十四)  使用Visual Studio 2017建立空白ASP.Net Core後，使用FileZilla上傳至CentOS 7 Ngnix測試</title>
+      <link href="/2019/11/15/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-15_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81%E5%9B%9B)%20%20%E4%BD%BF%E7%94%A8Visual%20Studio%202017%E5%BB%BA%E7%AB%8B%E7%A9%BA%E7%99%BDASP.Net%20Core%E5%BE%8C%EF%BC%8C%E4%BD%BF%E7%94%A8FileZilla%E4%B8%8A%E5%82%B3%E8%87%B3CentOS%207%20Ngnix%E6%B8%AC%E8%A9%A6/"/>
+      <url>/2019/11/15/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-15_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81%E5%9B%9B)%20%20%E4%BD%BF%E7%94%A8Visual%20Studio%202017%E5%BB%BA%E7%AB%8B%E7%A9%BA%E7%99%BDASP.Net%20Core%E5%BE%8C%EF%BC%8C%E4%BD%BF%E7%94%A8FileZilla%E4%B8%8A%E5%82%B3%E8%87%B3CentOS%207%20Ngnix%E6%B8%AC%E8%A9%A6/</url>
+      
+        <content type="html"><![CDATA[<p>#</p>]]></content>
+      
+      
       <categories>
-        <category>CentOS 7 架站</category>
+          
+          <category> CentOS 7 架站 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-03_CentOS 7 Minimal架站技術篇(二)  安裝SSH+使用Putty連線至安裝好的CentOS 7終端機</title>
-    <url>/2019/11/03/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-03_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%BA%8C)%20%20%E5%AE%89%E8%A3%9DSSH+%E4%BD%BF%E7%94%A8Putty%E9%80%A3%E7%B7%9A%E8%87%B3%E5%AE%89%E8%A3%9D%E5%A5%BD%E7%9A%84CentOS%207%E7%B5%82%E7%AB%AF%E6%A9%9F/</url>
-    <content><![CDATA[<h1 id="應用軟體準備"><a href="#應用軟體準備" class="headerlink" title="應用軟體準備"></a>應用軟體準備</h1><p>Putty下載連結處<br><a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/" target="_blank" rel="noopener">https://www.chiark.greenend.org.uk/~sgtatham/putty/</a></p>
-<h1 id="先在Windows-10作業環境下安裝Putty"><a href="#先在Windows-10作業環境下安裝Putty" class="headerlink" title="先在Windows 10作業環境下安裝Putty"></a>先在Windows 10作業環境下安裝Putty</h1><p>1、根據PC作業系統,選擇32-bit或64-bit下載完後並安裝<br><img src="/images/15733964492586.jpg" alt=""></p>
-<p>2、安裝步驟就不一一截圖了，就一直下一步就完成了，如真的不行，就Google搜尋「Putty安裝教學」就有可以參考嚕！</p>
-<p>3、安裝完成後，開啟軟體如下圖畫面即可<br><img src="/images/15733965912746.jpg" alt=""></p>
-<h1 id="開始至前篇所建立好的虛擬主機上安裝SSH服務"><a href="#開始至前篇所建立好的虛擬主機上安裝SSH服務" class="headerlink" title="開始至前篇所建立好的虛擬主機上安裝SSH服務"></a>開始至前篇所建立好的虛擬主機上安裝SSH服務</h1><h2 id="登入主機root帳號，並且建立一個使用者"><a href="#登入主機root帳號，並且建立一個使用者" class="headerlink" title="登入主機root帳號，並且建立一個使用者"></a>登入主機root帳號，並且建立一個使用者</h2><p>1、登入虛擬主機，輸入帳號與密碼<br><img src="/images/YUNYU-JOHNNY-PC-28.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>2、安裝ssh服務之前，先建立一個非root帳號的使用者來使用，不然root帳號權限太大了，不建議直接使用</p>
-<p>指令：useradd -m 使用者名稱<br>建立一個使用者並且建立一個家目錄  johnny為示範帳號，請自行修改</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">useradd -m johnny</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-29.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>3、設定user密碼</p>
-<p>指令： passwd 使用者名稱</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">passwd johnny</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-30.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>4、從root切換使用者，如需切回root一樣方式</p>
-<p>指令：su 使用者名稱</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">su johnny</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-33.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>5、進入自己的家目錄</p>
-<p>指令：cd ~ 「~」家目錄  「ls」查詢目錄下有什麼檔案(下圖查詢結果：家目錄內沒有任何檔案)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd ~</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-34.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>6、設定使用者帳號能夠執行sudo權限</p>
-<p>指令：先切回root帳號密碼登入，才有權限修改visudo設定檔</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">su root</span><br><span class="line">visudo</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-36.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>進入vi編緝器，按方向鍵找到 「root ALL=(ALL) ALL」處，按下「i」進入修改模式，新增使用者帳號，內容如下圖<br><img src="/images/YUNYU-JOHNNY-PC-37.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>完成後，按下「Esc」退出修改模式，再按下「:」輸入「wq」存檔退出<br><img src="/images/YUNYU-JOHNNY-PC-38.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>7、恭禧您新建立的使用者名稱已有sudo權限嚕！</p>
-<h2 id="因為使用虛擬主機關係，必須將網路的設定改為「橋接介面卡」，才可以正常取得設定的IP如下圖設定方式，否則下面安裝任何服務，都會連不到網路而失敗"><a href="#因為使用虛擬主機關係，必須將網路的設定改為「橋接介面卡」，才可以正常取得設定的IP如下圖設定方式，否則下面安裝任何服務，都會連不到網路而失敗" class="headerlink" title="因為使用虛擬主機關係，必須將網路的設定改為「橋接介面卡」，才可以正常取得設定的IP如下圖設定方式，否則下面安裝任何服務，都會連不到網路而失敗"></a>因為使用虛擬主機關係，必須將網路的設定改為「橋接介面卡」，才可以正常取得設定的IP如下圖設定方式，否則下面安裝任何服務，都會連不到網路而失敗</h2><p><img src="/images/YUNYU-JOHNNY-PC-39.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p><code>註：更改設定後，請重新開機</code><br>指令：sudo reboot now</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo reboot now</span><br></pre></td></tr></table></figure>
-
-<h2 id="正式開始安裝ssh服務"><a href="#正式開始安裝ssh服務" class="headerlink" title="正式開始安裝ssh服務"></a>正式開始安裝ssh服務</h2><p>1、安裝ssh服務</p>
-<p>錯誤指令：安裝ssh服務的指令(非使用sudo管理認證安裝會出現錯誤訊息如下圖)<br><code>註：這裡指令內容不行複製到虛擬主機上，等到使用Putty連線就可以複製貼上嚕</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum install -y openssh openssh-server openssh-clients openssl-libs</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-35.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>哈哈~是不是不行安裝呢？因為我們不是用root帳號進行安裝，所以安裝指令前面要加上sudo，即可以使用sudo取得管理者認證來進行安裝</p>
-<p>正確指令：安裝ssh服務的指令(使用sudo取得管理者認證進行安裝)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo yum install openssh openssh-server</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-40.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>2、編緝SSH設定檔</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
-
-<p>修改區域開啟port 22 把前面#移除<br><img src="/images/YUNYU-JOHNNY-PC-41.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>修改不允許root使用ssh登入，把前面#移除，並且改為no<br><img src="/images/YUNYU-JOHNNY-PC-42.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>增加只允許使用者帳號 johnny可使用，並且使用SSHv2連線的方式<br><img src="/images/YUNYU-JOHNNY-PC-43.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>完成後:wq存檔，結束vi編輯器</p>
-<p>3、重新啟動ssh服務</p>
-<p>指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart sshd.service</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-44.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>4、設定開機啟動SSH服務</p>
-<p>指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo systemctl enable sshd.service</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-45.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>5、設定防火牆允許此port 22</p>
-<p>指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo firewall-cmd --permanent --zone=public --add-port=22/tcp</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-46.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>6、重新載入防火牆設定</p>
-<p>指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-<p><img src="/images/YUNYU-JOHNNY-PC-47.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>7、使用Windows的cmd，測試ssh登入是否正常</p>
-<p>指令：ssh -p SSH服務Port號 登入帳號@IP或主機名稱</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh -p 22 johnny@192.168.1.123</span><br></pre></td></tr></table></figure>
-<p>登入成功畫面如下：<br><img src="/images/YUNYU-JOHNNY-PC-48.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>離開指令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
-
-<h1 id="使用Putty連線至虛擬主機"><a href="#使用Putty連線至虛擬主機" class="headerlink" title="使用Putty連線至虛擬主機"></a>使用Putty連線至虛擬主機</h1><p>1、開啟Putty 輸入IP與Port，選擇SSH，按下「Open」<br><img src="/images/YUNYU-JOHNNY-PC-49.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>2、輸入使用者帳號與密碼，即可登入主機<br><img src="/images/YUNYU-JOHNNY-PC-50.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>3、恭禧，您又完成了，請進入下一章節~加油</p>
-]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS 7 Minimal架站技術篇/2019-11-14_CentOS 7 Minimal架站技術篇(十三)  設定使用者連線FTP權限與資料夾權限</title>
+      <link href="/2019/11/14/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-14_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81%E4%B8%89)%20%20%E8%A8%AD%E5%AE%9A%E4%BD%BF%E7%94%A8%E8%80%85%E9%80%A3%E7%B7%9AFTP%E6%AC%8A%E9%99%90%E8%88%87%E8%B3%87%E6%96%99%E5%A4%BE%E6%AC%8A%E9%99%90/"/>
+      <url>/2019/11/14/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-14_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81%E4%B8%89)%20%20%E8%A8%AD%E5%AE%9A%E4%BD%BF%E7%94%A8%E8%80%85%E9%80%A3%E7%B7%9AFTP%E6%AC%8A%E9%99%90%E8%88%87%E8%B3%87%E6%96%99%E5%A4%BE%E6%AC%8A%E9%99%90/</url>
+      
+        <content type="html"><![CDATA[<p>#</p>]]></content>
+      
+      
       <categories>
-        <category>CentOS 7 架站</category>
+          
+          <category> CentOS 7 架站 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-02_CentOS 7 Minimal架站技術篇(一)  安裝CentOS 7 Minimal 作業系統</title>
-    <url>/2019/11/02/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-02_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B8%80)%20%20%E5%AE%89%E8%A3%9DCentOS%207%20Minimal%20%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1/</url>
-    <content><![CDATA[<h1 id="環境架設"><a href="#環境架設" class="headerlink" title="環境架設"></a>環境架設</h1><p>1、Windows 10 企業版 1803<br>2、虛擬主機 VirtualBox-6.0.14-133895<br><a href="https://download.virtualbox.org/virtualbox/6.0.14/VirtualBox-6.0.14-133895-Win.exe" target="_blank" rel="noopener">https://download.virtualbox.org/virtualbox/6.0.14/VirtualBox-6.0.14-133895-Win.exe</a><br>3、CentOS-7-x86_64-Minimal-1908.iso<br><a href="http://mirror.team-cymru.com/CentOS/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso" target="_blank" rel="noopener">http://mirror.team-cymru.com/CentOS/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso</a></p>
-<h1 id="開啟VirtualBox"><a href="#開啟VirtualBox" class="headerlink" title="開啟VirtualBox"></a>開啟VirtualBox</h1><p>1、新增一台虛擬主機<br><img src="/images/YUNYU-JOHNNY-PC-2.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>2、設置記憶體<br><img src="/images/YUNYU-JOHNNY-PC-3.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>3、設置硬碟容量<br><img src="/images/YUNYU-JOHNNY-PC-4.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>4、選擇硬碟檔類型<br><img src="/images/YUNYU-JOHNNY-PC-5.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>5、選擇存放裝置實體硬碟中<br><img src="/images/YUNYU-JOHNNY-PC-6.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>6、建立虛擬硬體大小，改為40GB<br><img src="/images/YUNYU-JOHNNY-PC-7.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>7、載入光碟檔案：CentOS-7-x86_64-Minimal-1908.iso<br><img src="/images/YUNYU-JOHNNY-PC-8.jpg" alt="YUNYU-JOHNNY-P"></p>
-<h1 id="開始安裝CentOS-7"><a href="#開始安裝CentOS-7" class="headerlink" title="開始安裝CentOS 7"></a>開始安裝CentOS 7</h1><p>1、選擇「Install CentOs 7」<br><img src="/images/YUNYU-JOHNNY-PC-9.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>2、出現選擇安裝語言，選擇(English」後，按下「Continue」<br><img src="/images/YUNYU-JOHNNY-PC-11.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>3、初始化設定，先選擇「DATE &amp; TIME」<br><img src="/images/YUNYU-JOHNNY-PC-12.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>4、Region選擇「Asia」, City選擇「Taipei」，然後按「Done」<br><img src="/images/YUNYU-JOHNNY-PC-13.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>5、確認時區設定已被改為「Asia/Taipei Timezone」<br><img src="/images/YUNYU-JOHNNY-PC-14.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>6、接下來設定安裝磁碟，選擇INSTALLATION DESTINATION]<br><img src="/images/YUNYU-JOHNNY-PC-15.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>7、選擇「Automatically configure partitioning」，再按「Done」<br><img src="/images/YUNYU-JOHNNY-PC-16.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>8、設定網路位址，方便連接網際網路，選擇「NETWORK &amp; HOST NAME」<br><img src="/images/YUNYU-JOHNNY-PC-17.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>9、點選「Configure…」<br><img src="/images/YUNYU-JOHNNY-PC-18.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>10 、點選「IPv4 Settings」<br><img src="/images/YUNYU-JOHNNY-PC-19.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>11、Method選擇「Manual」手動設定，按「Add」按鈕設定IP位址，並且設定DNS server位址，最後按下「Save」按鈕<br><img src="/images/YUNYU-JOHNNY-PC-20.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>12、點選開關按鈕，將網路卡設定「ON」，可看見IP已正常運作後，按「Done」<br><img src="/images/YUNYU-JOHNNY-PC-21.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>13、完成相關設定後，可看到「SOFTWARE SELECTION」預設為「Minimal Install」，接下來按「Begin Installation」按鈕來開始安裝CentOS。<br><img src="/images/YUNYU-JOHNNY-PC-22.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>14、設定root帳號密通四，點選「ROOT PASSWORD」<br><img src="/images/YUNYU-JOHNNY-PC-23.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>15、設定「Root Password」和「Confirm」的密碼一定要一樣，而且要記好，如果是要上線的機器，要設定複雜的密碼，以免被駭客猜中密碼入侵，設定好密碼後，再按「Done」<br><img src="/images/YUNYU-JOHNNY-PC-24.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>16、接下來按下「Finsh configuaration」<br><img src="/images/YUNYU-JOHNNY-PC-25.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>17、大約等待安裝時間約3分鐘左右可能更快，然後按下「Reboot」<br><img src="/images/YUNYU-JOHNNY-PC-26.jpg" alt="YUNYU-JOHNNY-P"></p>
-<p>18、如出現下圖畫面，恭禧您，已成功安裝CentOS 7 Minimal，可以繼續後面的伺服器軟體安裝或系統設定嚕！<br> <img src="/images/YUNYU-JOHNNY-PC-27.jpg" alt="YUNYU-JOHNNY-P"></p>
-]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS 7 Minimal架站技術篇/2019-11-13_CentOS 7 Minimal架站技術篇(十二)  建立使用者帳戶</title>
+      <link href="/2019/11/13/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-13_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81%E4%BA%8C)%20%20%E5%BB%BA%E7%AB%8B%E4%BD%BF%E7%94%A8%E8%80%85%E5%B8%B3%E6%88%B6/"/>
+      <url>/2019/11/13/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-13_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81%E4%BA%8C)%20%20%E5%BB%BA%E7%AB%8B%E4%BD%BF%E7%94%A8%E8%80%85%E5%B8%B3%E6%88%B6/</url>
+      
+        <content type="html"><![CDATA[<p>#</p>]]></content>
+      
+      
       <categories>
-        <category>CentOS 7 架站</category>
+          
+          <category> CentOS 7 架站 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title>2019-10-31_初次使用MWEB HEXO至github</title>
-    <url>/2019/10/31/2019-10-31_%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8MWEB%20HEXO%E8%87%B3github/</url>
-    <content><![CDATA[<h1 id="發佈文章相關指令"><a href="#發佈文章相關指令" class="headerlink" title="發佈文章相關指令"></a>發佈文章相關指令</h1><p>1、打開終端機  進入使用者 johnny/blog下<br>2、清除緩存並且更新  hexo clean hexo g<br>3、本地預覽, 確認內容有沒有錯誤 hexo s<br>4、發佈上線 hexo d<br>5、如果對操作很熟悉，並且不需要預覽的話，也可以使用 hexo g -d 直接發佈</p>
-<p><img src="/images/%E9%85%B7ma%E8%90%8C.png" alt="酷ma萌"></p>
-]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS 7 Minimal架站技術篇/2019-11-12_CentOS 7 Minimal架站技術篇(十一)  設定防火牆</title>
+      <link href="/2019/11/12/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-12_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81%E4%B8%80)%20%20%E8%A8%AD%E5%AE%9A%E9%98%B2%E7%81%AB%E7%89%86/"/>
+      <url>/2019/11/12/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-12_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81%E4%B8%80)%20%20%E8%A8%AD%E5%AE%9A%E9%98%B2%E7%81%AB%E7%89%86/</url>
+      
+        <content type="html"><![CDATA[<p>#</p>]]></content>
+      
+      
       <categories>
-        <category>Hexo Blog</category>
+          
+          <category> CentOS 7 架站 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-16_CentOS 7 Minimal架站技術篇(十五)  CentOS 7 Minimal架站技術篇(結論)</title>
-    <url>/2019/11/16/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-16_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81%E4%BA%94)%20%20CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E7%B5%90%E8%AB%96)/</url>
-    <content><![CDATA[<p>#</p>
-]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS 7 Minimal架站技術篇/2019-11-11_CentOS 7 Minimal架站技術篇(十)  設定Ngnix網站伺服器設定檔</title>
+      <link href="/2019/11/11/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-11_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81)%20%20%E8%A8%AD%E5%AE%9ANgnix%E7%B6%B2%E7%AB%99%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%A8%AD%E5%AE%9A%E6%AA%94/"/>
+      <url>/2019/11/11/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-11_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81)%20%20%E8%A8%AD%E5%AE%9ANgnix%E7%B6%B2%E7%AB%99%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%A8%AD%E5%AE%9A%E6%AA%94/</url>
+      
+        <content type="html"><![CDATA[<p>#</p>]]></content>
+      
+      
       <categories>
-        <category>CentOS 7 架站</category>
+          
+          <category> CentOS 7 架站 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-15_CentOS 7 Minimal架站技術篇(十四)  使用Visual Studio 2017建立空白ASP.Net Core後，使用FileZilla上傳至CentOS 7 Ngnix測試</title>
-    <url>/2019/11/15/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-15_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81%E5%9B%9B)%20%20%E4%BD%BF%E7%94%A8Visual%20Studio%202017%E5%BB%BA%E7%AB%8B%E7%A9%BA%E7%99%BDASP.Net%20Core%E5%BE%8C%EF%BC%8C%E4%BD%BF%E7%94%A8FileZilla%E4%B8%8A%E5%82%B3%E8%87%B3CentOS%207%20Ngnix%E6%B8%AC%E8%A9%A6/</url>
-    <content><![CDATA[<p>#</p>
-]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS 7 Minimal架站技術篇/2019-11-10_CentOS 7 Minimal架站技術篇(九)  設定ASP.Net Core Service</title>
+      <link href="/2019/11/10/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-10_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B9%9D)%20%20%E8%A8%AD%E5%AE%9AASP.Net%20Core%20Service/"/>
+      <url>/2019/11/10/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-10_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B9%9D)%20%20%E8%A8%AD%E5%AE%9AASP.Net%20Core%20Service/</url>
+      
+        <content type="html"><![CDATA[<p>#</p>]]></content>
+      
+      
       <categories>
-        <category>CentOS 7 架站</category>
+          
+          <category> CentOS 7 架站 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-14_CentOS 7 Minimal架站技術篇(十三)  設定使用者連線FTP權限與資料夾權限</title>
-    <url>/2019/11/14/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-14_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81%E4%B8%89)%20%20%E8%A8%AD%E5%AE%9A%E4%BD%BF%E7%94%A8%E8%80%85%E9%80%A3%E7%B7%9AFTP%E6%AC%8A%E9%99%90%E8%88%87%E8%B3%87%E6%96%99%E5%A4%BE%E6%AC%8A%E9%99%90/</url>
-    <content><![CDATA[<p>#</p>
-]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS 7 Minimal架站技術篇/2019-11-09_CentOS 7 Minimal架站技術篇(八)  安裝MongoDB+使用外部Robo3t連線測試</title>
+      <link href="/2019/11/09/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-09_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%85%AB)%20%20%E5%AE%89%E8%A3%9DMongoDB+%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8Robo3t%E9%80%A3%E7%B7%9A%E6%B8%AC%E8%A9%A6/"/>
+      <url>/2019/11/09/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-09_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%85%AB)%20%20%E5%AE%89%E8%A3%9DMongoDB+%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8Robo3t%E9%80%A3%E7%B7%9A%E6%B8%AC%E8%A9%A6/</url>
+      
+        <content type="html"><![CDATA[<p>#</p>]]></content>
+      
+      
       <categories>
-        <category>CentOS 7 架站</category>
+          
+          <category> CentOS 7 架站 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-13_CentOS 7 Minimal架站技術篇(十二)  建立使用者帳戶</title>
-    <url>/2019/11/13/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-13_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81%E4%BA%8C)%20%20%E5%BB%BA%E7%AB%8B%E4%BD%BF%E7%94%A8%E8%80%85%E5%B8%B3%E6%88%B6/</url>
-    <content><![CDATA[<p>#</p>
-]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS 7 Minimal架站技術篇/2019-11-08_CentOS 7 Minimal架站技術篇(七)  安裝MySql+使用外部Heidisql連線測試</title>
+      <link href="/2019/11/08/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-08_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B8%83)%20%20%E5%AE%89%E8%A3%9DMySql+%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8Heidisql%E9%80%A3%E7%B7%9A%E6%B8%AC%E8%A9%A6/"/>
+      <url>/2019/11/08/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-08_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B8%83)%20%20%E5%AE%89%E8%A3%9DMySql+%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8Heidisql%E9%80%A3%E7%B7%9A%E6%B8%AC%E8%A9%A6/</url>
+      
+        <content type="html"><![CDATA[<p>#</p>]]></content>
+      
+      
       <categories>
-        <category>CentOS 7 架站</category>
+          
+          <category> CentOS 7 架站 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-12_CentOS 7 Minimal架站技術篇(十一)  設定防火牆</title>
-    <url>/2019/11/12/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-12_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81%E4%B8%80)%20%20%E8%A8%AD%E5%AE%9A%E9%98%B2%E7%81%AB%E7%89%86/</url>
-    <content><![CDATA[<p>#</p>
-]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS 7 Minimal架站技術篇/2019-11-07_CentOS 7 Minimal架站技術篇(六)  安裝Ngnix網站伺服器</title>
+      <link href="/2019/11/07/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-07_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%85%AD)%20%20%E5%AE%89%E8%A3%9DNgnix%E7%B6%B2%E7%AB%99%E4%BC%BA%E6%9C%8D%E5%99%A8/"/>
+      <url>/2019/11/07/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-07_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%85%AD)%20%20%E5%AE%89%E8%A3%9DNgnix%E7%B6%B2%E7%AB%99%E4%BC%BA%E6%9C%8D%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<p>#</p>]]></content>
+      
+      
       <categories>
-        <category>CentOS 7 架站</category>
+          
+          <category> CentOS 7 架站 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-11_CentOS 7 Minimal架站技術篇(十)  設定Ngnix網站伺服器設定檔</title>
-    <url>/2019/11/11/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-11_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%8D%81)%20%20%E8%A8%AD%E5%AE%9ANgnix%E7%B6%B2%E7%AB%99%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%A8%AD%E5%AE%9A%E6%AA%94/</url>
-    <content><![CDATA[<p>#</p>
-]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS 7 Minimal架站技術篇/2019-11-06_CentOS 7 Minimal架站技術篇(五)  安裝ASP.Net Core 套件 dotnet</title>
+      <link href="/2019/11/06/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-06_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%BA%94)%20%20%E5%AE%89%E8%A3%9DASP.Net%20Core%20%E5%A5%97%E4%BB%B6%20dotnet/"/>
+      <url>/2019/11/06/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-06_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%BA%94)%20%20%E5%AE%89%E8%A3%9DASP.Net%20Core%20%E5%A5%97%E4%BB%B6%20dotnet/</url>
+      
+        <content type="html"><![CDATA[<p>#</p>]]></content>
+      
+      
       <categories>
-        <category>CentOS 7 架站</category>
+          
+          <category> CentOS 7 架站 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-10_CentOS 7 Minimal架站技術篇(九)  設定ASP.Net Core Service</title>
-    <url>/2019/11/10/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-10_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B9%9D)%20%20%E8%A8%AD%E5%AE%9AASP.Net%20Core%20Service/</url>
-    <content><![CDATA[<p>#</p>
-]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS 7 Minimal架站技術篇/2019-11-05_CentOS 7 Minimal架站技術篇(四)  安裝vsftpd+ftp，使用FileZilla連線至FTP服務</title>
+      <link href="/2019/11/05/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-05_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%9B%9B)%20%20%E5%AE%89%E8%A3%9Dvsftpd+ftp%EF%BC%8C%E4%BD%BF%E7%94%A8FileZilla%E9%80%A3%E7%B7%9A%E8%87%B3FTP%E6%9C%8D%E5%8B%99/"/>
+      <url>/2019/11/05/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-05_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%9B%9B)%20%20%E5%AE%89%E8%A3%9Dvsftpd+ftp%EF%BC%8C%E4%BD%BF%E7%94%A8FileZilla%E9%80%A3%E7%B7%9A%E8%87%B3FTP%E6%9C%8D%E5%8B%99/</url>
+      
+        <content type="html"><![CDATA[<h1 id="連線FTP伺服器應用軟體"><a href="#連線FTP伺服器應用軟體" class="headerlink" title="連線FTP伺服器應用軟體"></a>連線FTP伺服器應用軟體</h1><p>應用軟體名稱 FileZilla<br><a href="https://filezilla-project.org/" target="_blank" rel="noopener">https://filezilla-project.org/</a></p><p>可以安裝免安裝與裝學<br>參考網址位址(FileZilla v3.45.1 免費 FTP 傳檔軟體（繁體中文免安裝版，無廣告)：<br><a href="https://briian.com/5627/" target="_blank" rel="noopener">https://briian.com/5627/</a></p><h1 id="安裝-vsftpd服務"><a href="#安裝-vsftpd服務" class="headerlink" title="安裝 vsftpd服務"></a>安裝 vsftpd服務</h1><p>指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum -y install vsftpd</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-54.jpg" alt="YUNYU-JOHNNY-P"></p><h1 id="安裝ftp服務"><a href="#安裝ftp服務" class="headerlink" title="安裝ftp服務"></a>安裝ftp服務</h1><p>指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install ftp</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-55.jpg" alt="YUNYU-JOHNNY-P"></p><p>輸入：y<br><img src="/images/YUNYU-JOHNNY-PC-56.jpg" alt="YUNYU-JOHNNY-P"></p><h1 id="修改設定檔"><a href="#修改設定檔" class="headerlink" title="修改設定檔"></a>修改設定檔</h1><p>1、使用指令開啟<br>指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/vsftpd/vsftpd.conf</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-57.jpg" alt="YUNYU-JOHNNY-P"></p><p>限制使用者離開家目錄，只有chroot_list名單中的使用者，才可以離開家目錄(給管理者用)</p><p>anonymous_enable=NO<br><img src="/images/YUNYU-JOHNNY-PC-58.jpg" alt="YUNYU-JOHNNY-P"></p><p>找到下列，將前面#刪除<br>chroot_list_enable=YES<br>chroot_list_file=/etc/vsftpd/chroot_list<br>chroot_local_user=YES<br><img src="/images/YUNYU-JOHNNY-PC-59.jpg" alt="YUNYU-JOHNNY-P"></p><p>讓使用者可以用檔案總管方式上傳檔案<br>connect_from_port_20=NO<br>pasv_enable=YES</p><p><img src="/images/YUNYU-JOHNNY-PC-60.jpg" alt="YUNYU-JOHNNY-P"></p><p><code>註：IE瀏覽器無法使用FTP功能，但可以用檔案總管的方式來克服此問題</code></p><p>完成後按「Esc」離開編輯模式後，按「:」「wq」存檔離開</p><p>2、外部新增檔案chroot_list加入管理者名單  範例：只允許johnny帳號<br>指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/vsftpd</span><br><span class="line">sudo touch chroot_list</span><br><span class="line">sudo vi chroot_list</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-63.jpg" alt="YUNYU-JOHNNY-P"></p><p> 加入使用者帳號 範例：johnny<br><img src="/images/YUNYU-JOHNNY-PC-62.jpg" alt="YUNYU-JOHNNY-P"></p><p>完成後按「Esc」離開編輯模式後，按「:」「wq」存檔離開</p><p>3、啟動vsftpd服務<br>指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start vsftpd</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-64.jpg" alt="YUNYU-JOHNNY-P"></p><p>4、設定開機啟動vsftpd服務<br>指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable vsftpd</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-65.jpg" alt="YUNYU-JOHNNY-P"></p><p>5、開啟防火牆設定 ftp port 21 並且重新啟動防火牆<br>指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --zone=public --add-port=21/tcp --permanent</span><br><span class="line">sudo systemctl restart firewalld</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-66.jpg" alt="YUNYU-JOHNNY-P"></p><p>6、設定使用者 FTP目錄執行權限<br>7 = 4 (讀) + 2 (寫) + 1 (執行)<br>5 = 4 (讀) + 1 (執行)<br>4 = 4 (讀)<br>指令： chmod 777 權限全開通</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 777 /home/johnny/</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-69.jpg" alt="YUNYU-JOHNNY-P"></p><p>查詢權限指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -al</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-70.jpg" alt="YUNYU-JOHNNY-P"></p><p><code>註：dr目錄 wxr 管理者 wxr 群組 wxr 一般使用者，所以777 皆可寫+讀+執行</code></p><p>7、重新啟動伺服器<br>指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo reboot now</span><br></pre></td></tr></table></figure><h1 id="Windows-10使用FileZilla檔案傳輸軟體連線虛擬主機ftp伺服器"><a href="#Windows-10使用FileZilla檔案傳輸軟體連線虛擬主機ftp伺服器" class="headerlink" title="Windows 10使用FileZilla檔案傳輸軟體連線虛擬主機ftp伺服器"></a>Windows 10使用FileZilla檔案傳輸軟體連線虛擬主機ftp伺服器</h1><p>1、開啟FileZilla檔案傳輸軟體，點選工具列「檔案」-&gt;「站台管理員」-&gt;「新增站台」<br>設定選擇「SFTP」，輸入主機：「IP位址」、輸入使用者：「帳號」與密碼：「密碼」，範例如下圖，最後「連線」<br><img src="/images/YUNYU-JOHNNY-PC-72.jpg" alt="YUNYU-JOHNNY-P"></p><p>2、成功連線如下圖所示<br><img src="/images/YUNYU-JOHNNY-PC-73.jpg" alt="YUNYU-JOHNNY-P"></p><p>3、恭禧您，成功連線FTP了，可以再前往下一篇了</p>]]></content>
+      
+      
       <categories>
-        <category>CentOS 7 架站</category>
+          
+          <category> CentOS 7 架站 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-09_CentOS 7 Minimal架站技術篇(八)  安裝MongoDB+使用外部Robo3t連線測試</title>
-    <url>/2019/11/09/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-09_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%85%AB)%20%20%E5%AE%89%E8%A3%9DMongoDB+%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8Robo3t%E9%80%A3%E7%B7%9A%E6%B8%AC%E8%A9%A6/</url>
-    <content><![CDATA[<p>#</p>
-]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS 7 Minimal架站技術篇/2019-11-04_CentOS 7 Minimal架站技術篇(三)  安裝好用工具 mc unzip nmap wget</title>
+      <link href="/2019/11/04/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-04_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B8%89)%20%20%E5%AE%89%E8%A3%9D%E5%A5%BD%E7%94%A8%E5%B7%A5%E5%85%B7%20mc%20unzip%20nmap%20wget/"/>
+      <url>/2019/11/04/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-04_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B8%89)%20%20%E5%AE%89%E8%A3%9D%E5%A5%BD%E7%94%A8%E5%B7%A5%E5%85%B7%20mc%20unzip%20nmap%20wget/</url>
+      
+        <content type="html"><![CDATA[<h1 id="安裝好用的工具"><a href="#安裝好用的工具" class="headerlink" title="安裝好用的工具"></a>安裝好用的工具</h1><p>1、mc 類似以前dos環境下的 pctools<br>2、nmap 網路查詢與管理的好幫手<br>3、unzip 解壓縮工具<br>4、wget 下載的好工具</p><h1 id="開始安裝"><a href="#開始安裝" class="headerlink" title="開始安裝"></a>開始安裝</h1><p>1、一次下載上述好用的工具</p><p>指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install mc nmap unzip wget -y</span><br></pre></td></tr></table></figure><p><code>請記得您使用Putty連線嚕，所以可以用複鍵指令，然後再終端機上按滑鼠右鍵，就可以把複製的指令貼上嚕</code><br><img src="/images/YUNYU-JOHNNY-PC-51.jpg" alt="YUNYU-JOHNNY-P"></p><p>2、安裝完成如下圖<br><img src="/images/YUNYU-JOHNNY-PC-52.jpg" alt="YUNYU-JOHNNY-P"></p><p>3、指行工具mc測試  其他工具往後有用到再說嚕</p><p>指令： 如需使用mc修改設定檔，請記得前面加上<code>sudo</code>即可</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mc</span><br></pre></td></tr></table></figure><p>畫面如下：<br><img src="/images/YUNYU-JOHNNY-PC-53.jpg" alt="YUNYU-JOHNNY-P"></p><p>4、恭禧您~這篇就是這麼簡單，完成了，請進入下一篇</p>]]></content>
+      
+      
       <categories>
-        <category>CentOS 7 架站</category>
+          
+          <category> CentOS 7 架站 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-08_CentOS 7 Minimal架站技術篇(七)  安裝MySql+使用外部Heidisql連線測試</title>
-    <url>/2019/11/08/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-08_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B8%83)%20%20%E5%AE%89%E8%A3%9DMySql+%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8Heidisql%E9%80%A3%E7%B7%9A%E6%B8%AC%E8%A9%A6/</url>
-    <content><![CDATA[<p>#</p>
-]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS 7 Minimal架站技術篇/2019-11-03_CentOS 7 Minimal架站技術篇(二)  安裝SSH+使用Putty連線至安裝好的CentOS 7終端機</title>
+      <link href="/2019/11/03/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-03_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%BA%8C)%20%20%E5%AE%89%E8%A3%9DSSH+%E4%BD%BF%E7%94%A8Putty%E9%80%A3%E7%B7%9A%E8%87%B3%E5%AE%89%E8%A3%9D%E5%A5%BD%E7%9A%84CentOS%207%E7%B5%82%E7%AB%AF%E6%A9%9F/"/>
+      <url>/2019/11/03/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-03_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%BA%8C)%20%20%E5%AE%89%E8%A3%9DSSH+%E4%BD%BF%E7%94%A8Putty%E9%80%A3%E7%B7%9A%E8%87%B3%E5%AE%89%E8%A3%9D%E5%A5%BD%E7%9A%84CentOS%207%E7%B5%82%E7%AB%AF%E6%A9%9F/</url>
+      
+        <content type="html"><![CDATA[<h1 id="應用軟體準備"><a href="#應用軟體準備" class="headerlink" title="應用軟體準備"></a>應用軟體準備</h1><p>Putty下載連結處<br><a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/" target="_blank" rel="noopener">https://www.chiark.greenend.org.uk/~sgtatham/putty/</a></p><h1 id="先在Windows-10作業環境下安裝Putty"><a href="#先在Windows-10作業環境下安裝Putty" class="headerlink" title="先在Windows 10作業環境下安裝Putty"></a>先在Windows 10作業環境下安裝Putty</h1><p>1、根據PC作業系統,選擇32-bit或64-bit下載完後並安裝<br><img src="/images/15733964492586.jpg" alt=""></p><p>2、安裝步驟就不一一截圖了，就一直下一步就完成了，如真的不行，就Google搜尋「Putty安裝教學」就有可以參考嚕！</p><p>3、安裝完成後，開啟軟體如下圖畫面即可<br><img src="/images/15733965912746.jpg" alt=""></p><h1 id="開始至前篇所建立好的虛擬主機上安裝SSH服務"><a href="#開始至前篇所建立好的虛擬主機上安裝SSH服務" class="headerlink" title="開始至前篇所建立好的虛擬主機上安裝SSH服務"></a>開始至前篇所建立好的虛擬主機上安裝SSH服務</h1><h2 id="登入主機root帳號，並且建立一個使用者"><a href="#登入主機root帳號，並且建立一個使用者" class="headerlink" title="登入主機root帳號，並且建立一個使用者"></a>登入主機root帳號，並且建立一個使用者</h2><p>1、登入虛擬主機，輸入帳號與密碼<br><img src="/images/YUNYU-JOHNNY-PC-28.jpg" alt="YUNYU-JOHNNY-P"></p><p>2、安裝ssh服務之前，先建立一個非root帳號的使用者來使用，不然root帳號權限太大了，不建議直接使用</p><p>指令：useradd -m 使用者名稱<br>建立一個使用者並且建立一個家目錄  johnny為示範帳號，請自行修改</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -m johnny</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-29.jpg" alt="YUNYU-JOHNNY-P"></p><p>3、設定user密碼</p><p>指令： passwd 使用者名稱</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd johnny</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-30.jpg" alt="YUNYU-JOHNNY-P"></p><p>4、從root切換使用者，如需切回root一樣方式</p><p>指令：su 使用者名稱</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su johnny</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-33.jpg" alt="YUNYU-JOHNNY-P"></p><p>5、進入自己的家目錄</p><p>指令：cd ~ 「~」家目錄  「ls」查詢目錄下有什麼檔案(下圖查詢結果：家目錄內沒有任何檔案)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-34.jpg" alt="YUNYU-JOHNNY-P"></p><p>6、設定使用者帳號能夠執行sudo權限</p><p>指令：先切回root帳號密碼登入，才有權限修改visudo設定檔</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su root</span><br><span class="line">visudo</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-36.jpg" alt="YUNYU-JOHNNY-P"></p><p>進入vi編緝器，按方向鍵找到 「root ALL=(ALL) ALL」處，按下「i」進入修改模式，新增使用者帳號，內容如下圖<br><img src="/images/YUNYU-JOHNNY-PC-37.jpg" alt="YUNYU-JOHNNY-P"></p><p>完成後，按下「Esc」退出修改模式，再按下「:」輸入「wq」存檔退出<br><img src="/images/YUNYU-JOHNNY-PC-38.jpg" alt="YUNYU-JOHNNY-P"></p><p>7、恭禧您新建立的使用者名稱已有sudo權限嚕！</p><h2 id="因為使用虛擬主機關係，必須將網路的設定改為「橋接介面卡」，才可以正常取得設定的IP如下圖設定方式，否則下面安裝任何服務，都會連不到網路而失敗"><a href="#因為使用虛擬主機關係，必須將網路的設定改為「橋接介面卡」，才可以正常取得設定的IP如下圖設定方式，否則下面安裝任何服務，都會連不到網路而失敗" class="headerlink" title="因為使用虛擬主機關係，必須將網路的設定改為「橋接介面卡」，才可以正常取得設定的IP如下圖設定方式，否則下面安裝任何服務，都會連不到網路而失敗"></a>因為使用虛擬主機關係，必須將網路的設定改為「橋接介面卡」，才可以正常取得設定的IP如下圖設定方式，否則下面安裝任何服務，都會連不到網路而失敗</h2><p><img src="/images/YUNYU-JOHNNY-PC-39.jpg" alt="YUNYU-JOHNNY-P"></p><p><code>註：更改設定後，請重新開機</code><br>指令：sudo reboot now</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo reboot now</span><br></pre></td></tr></table></figure><h2 id="正式開始安裝ssh服務"><a href="#正式開始安裝ssh服務" class="headerlink" title="正式開始安裝ssh服務"></a>正式開始安裝ssh服務</h2><p>1、安裝ssh服務</p><p>錯誤指令：安裝ssh服務的指令(非使用sudo管理認證安裝會出現錯誤訊息如下圖)<br><code>註：這裡指令內容不行複製到虛擬主機上，等到使用Putty連線就可以複製貼上嚕</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y openssh openssh-server openssh-clients openssl-libs</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-35.jpg" alt="YUNYU-JOHNNY-P"></p><p>哈哈~是不是不行安裝呢？因為我們不是用root帳號進行安裝，所以安裝指令前面要加上sudo，即可以使用sudo取得管理者認證來進行安裝</p><p>正確指令：安裝ssh服務的指令(使用sudo取得管理者認證進行安裝)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install openssh openssh-server</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-40.jpg" alt="YUNYU-JOHNNY-P"></p><p>2、編緝SSH設定檔</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure><p>修改區域開啟port 22 把前面#移除<br><img src="/images/YUNYU-JOHNNY-PC-41.jpg" alt="YUNYU-JOHNNY-P"></p><p>修改不允許root使用ssh登入，把前面#移除，並且改為no<br><img src="/images/YUNYU-JOHNNY-PC-42.jpg" alt="YUNYU-JOHNNY-P"></p><p>增加只允許使用者帳號 johnny可使用，並且使用SSHv2連線的方式<br><img src="/images/YUNYU-JOHNNY-PC-43.jpg" alt="YUNYU-JOHNNY-P"></p><p>完成後:wq存檔，結束vi編輯器</p><p>3、重新啟動ssh服務</p><p>指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart sshd.service</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-44.jpg" alt="YUNYU-JOHNNY-P"></p><p>4、設定開機啟動SSH服務</p><p>指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable sshd.service</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-45.jpg" alt="YUNYU-JOHNNY-P"></p><p>5、設定防火牆允許此port 22</p><p>指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --permanent --zone=public --add-port=22/tcp</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-46.jpg" alt="YUNYU-JOHNNY-P"></p><p>6、重新載入防火牆設定</p><p>指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure><p><img src="/images/YUNYU-JOHNNY-PC-47.jpg" alt="YUNYU-JOHNNY-P"></p><p>7、使用Windows的cmd，測試ssh登入是否正常</p><p>指令：ssh -p SSH服務Port號 登入帳號@IP或主機名稱</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -p 22 johnny@192.168.1.123</span><br></pre></td></tr></table></figure><p>登入成功畫面如下：<br><img src="/images/YUNYU-JOHNNY-PC-48.jpg" alt="YUNYU-JOHNNY-P"></p><p>離開指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure><h1 id="使用Putty連線至虛擬主機"><a href="#使用Putty連線至虛擬主機" class="headerlink" title="使用Putty連線至虛擬主機"></a>使用Putty連線至虛擬主機</h1><p>1、開啟Putty 輸入IP與Port，選擇SSH，按下「Open」<br><img src="/images/YUNYU-JOHNNY-PC-49.jpg" alt="YUNYU-JOHNNY-P"></p><p>2、輸入使用者帳號與密碼，即可登入主機<br><img src="/images/YUNYU-JOHNNY-PC-50.jpg" alt="YUNYU-JOHNNY-P"></p><p>3、恭禧，您又完成了，請進入下一章節~加油</p>]]></content>
+      
+      
       <categories>
-        <category>CentOS 7 架站</category>
+          
+          <category> CentOS 7 架站 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-07_CentOS 7 Minimal架站技術篇(六)  安裝Ngnix網站伺服器</title>
-    <url>/2019/11/07/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-07_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E5%85%AD)%20%20%E5%AE%89%E8%A3%9DNgnix%E7%B6%B2%E7%AB%99%E4%BC%BA%E6%9C%8D%E5%99%A8/</url>
-    <content><![CDATA[<p>#</p>
-]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS 7 Minimal架站技術篇/2019-11-02_CentOS 7 Minimal架站技術篇(一)  安裝CentOS 7 Minimal 作業系統</title>
+      <link href="/2019/11/02/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-02_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B8%80)%20%20%E5%AE%89%E8%A3%9DCentOS%207%20Minimal%20%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1/"/>
+      <url>/2019/11/02/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-02_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B8%80)%20%20%E5%AE%89%E8%A3%9DCentOS%207%20Minimal%20%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="環境架設"><a href="#環境架設" class="headerlink" title="環境架設"></a>環境架設</h1><p>1、Windows 10 企業版 1803<br>2、虛擬主機 VirtualBox-6.0.14-133895<br><a href="https://download.virtualbox.org/virtualbox/6.0.14/VirtualBox-6.0.14-133895-Win.exe" target="_blank" rel="noopener">https://download.virtualbox.org/virtualbox/6.0.14/VirtualBox-6.0.14-133895-Win.exe</a><br>3、CentOS-7-x86_64-Minimal-1908.iso<br><a href="http://mirror.team-cymru.com/CentOS/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso" target="_blank" rel="noopener">http://mirror.team-cymru.com/CentOS/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso</a></p><h1 id="開啟VirtualBox"><a href="#開啟VirtualBox" class="headerlink" title="開啟VirtualBox"></a>開啟VirtualBox</h1><p>1、新增一台虛擬主機<br><img src="/images/YUNYU-JOHNNY-PC-2.jpg" alt="YUNYU-JOHNNY-P"></p><p>2、設置記憶體<br><img src="/images/YUNYU-JOHNNY-PC-3.jpg" alt="YUNYU-JOHNNY-P"></p><p>3、設置硬碟容量<br><img src="/images/YUNYU-JOHNNY-PC-4.jpg" alt="YUNYU-JOHNNY-P"></p><p>4、選擇硬碟檔類型<br><img src="/images/YUNYU-JOHNNY-PC-5.jpg" alt="YUNYU-JOHNNY-P"></p><p>5、選擇存放裝置實體硬碟中<br><img src="/images/YUNYU-JOHNNY-PC-6.jpg" alt="YUNYU-JOHNNY-P"></p><p>6、建立虛擬硬體大小，改為40GB<br><img src="/images/YUNYU-JOHNNY-PC-7.jpg" alt="YUNYU-JOHNNY-P"></p><p>7、載入光碟檔案：CentOS-7-x86_64-Minimal-1908.iso<br><img src="/images/YUNYU-JOHNNY-PC-8.jpg" alt="YUNYU-JOHNNY-P"></p><h1 id="開始安裝CentOS-7"><a href="#開始安裝CentOS-7" class="headerlink" title="開始安裝CentOS 7"></a>開始安裝CentOS 7</h1><p>1、選擇「Install CentOs 7」<br><img src="/images/YUNYU-JOHNNY-PC-9.jpg" alt="YUNYU-JOHNNY-P"></p><p>2、出現選擇安裝語言，選擇(English」後，按下「Continue」<br><img src="/images/YUNYU-JOHNNY-PC-11.jpg" alt="YUNYU-JOHNNY-P"></p><p>3、初始化設定，先選擇「DATE &amp; TIME」<br><img src="/images/YUNYU-JOHNNY-PC-12.jpg" alt="YUNYU-JOHNNY-P"></p><p>4、Region選擇「Asia」, City選擇「Taipei」，然後按「Done」<br><img src="/images/YUNYU-JOHNNY-PC-13.jpg" alt="YUNYU-JOHNNY-P"></p><p>5、確認時區設定已被改為「Asia/Taipei Timezone」<br><img src="/images/YUNYU-JOHNNY-PC-14.jpg" alt="YUNYU-JOHNNY-P"></p><p>6、接下來設定安裝磁碟，選擇INSTALLATION DESTINATION]<br><img src="/images/YUNYU-JOHNNY-PC-15.jpg" alt="YUNYU-JOHNNY-P"></p><p>7、選擇「Automatically configure partitioning」，再按「Done」<br><img src="/images/YUNYU-JOHNNY-PC-16.jpg" alt="YUNYU-JOHNNY-P"></p><p>8、設定網路位址，方便連接網際網路，選擇「NETWORK &amp; HOST NAME」<br><img src="/images/YUNYU-JOHNNY-PC-17.jpg" alt="YUNYU-JOHNNY-P"></p><p>9、點選「Configure…」<br><img src="/images/YUNYU-JOHNNY-PC-18.jpg" alt="YUNYU-JOHNNY-P"></p><p>10 、點選「IPv4 Settings」<br><img src="/images/YUNYU-JOHNNY-PC-19.jpg" alt="YUNYU-JOHNNY-P"></p><p>11、Method選擇「Manual」手動設定，按「Add」按鈕設定IP位址，並且設定DNS server位址，最後按下「Save」按鈕<br><img src="/images/YUNYU-JOHNNY-PC-20.jpg" alt="YUNYU-JOHNNY-P"></p><p>12、點選開關按鈕，將網路卡設定「ON」，可看見IP已正常運作後，按「Done」<br><img src="/images/YUNYU-JOHNNY-PC-21.jpg" alt="YUNYU-JOHNNY-P"></p><p>13、完成相關設定後，可看到「SOFTWARE SELECTION」預設為「Minimal Install」，接下來按「Begin Installation」按鈕來開始安裝CentOS。<br><img src="/images/YUNYU-JOHNNY-PC-22.jpg" alt="YUNYU-JOHNNY-P"></p><p>14、設定root帳號密通四，點選「ROOT PASSWORD」<br><img src="/images/YUNYU-JOHNNY-PC-23.jpg" alt="YUNYU-JOHNNY-P"></p><p>15、設定「Root Password」和「Confirm」的密碼一定要一樣，而且要記好，如果是要上線的機器，要設定複雜的密碼，以免被駭客猜中密碼入侵，設定好密碼後，再按「Done」<br><img src="/images/YUNYU-JOHNNY-PC-24.jpg" alt="YUNYU-JOHNNY-P"></p><p>16、接下來按下「Finsh configuaration」<br><img src="/images/YUNYU-JOHNNY-PC-25.jpg" alt="YUNYU-JOHNNY-P"></p><p>17、大約等待安裝時間約3分鐘左右可能更快，然後按下「Reboot」<br><img src="/images/YUNYU-JOHNNY-PC-26.jpg" alt="YUNYU-JOHNNY-P"></p><p>18、如出現下圖畫面，恭禧您，已成功安裝CentOS 7 Minimal，可以繼續後面的伺服器軟體安裝或系統設定嚕！<br> <img src="/images/YUNYU-JOHNNY-PC-27.jpg" alt="YUNYU-JOHNNY-P"></p>]]></content>
+      
+      
       <categories>
-        <category>CentOS 7 架站</category>
+          
+          <category> CentOS 7 架站 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-06_CentOS 7 Minimal架站技術篇(五)  安裝ASP.Net Core 套件 dotnet</title>
-    <url>/2019/11/06/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-06_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%BA%94)%20%20%E5%AE%89%E8%A3%9DASP.Net%20Core%20%E5%A5%97%E4%BB%B6%20dotnet/</url>
-    <content><![CDATA[<p>#</p>
-]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS 7 Minimal架站技術篇/2019-11-01_CentOS 7 Minimal架站技術篇(目錄)</title>
+      <link href="/2019/11/01/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-01_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E7%9B%AE%E9%8C%84)/"/>
+      <url>/2019/11/01/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-01_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E7%9B%AE%E9%8C%84)/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一-安裝CentOS-7-Minimal-作業系統"><a href="#一-安裝CentOS-7-Minimal-作業系統" class="headerlink" title="(一) 安裝CentOS 7 Minimal 作業系統"></a>(一) 安裝CentOS 7 Minimal 作業系統</h1><h1 id="二-安裝SSH-使用Putty連線至安裝好的CentOS-7終端機"><a href="#二-安裝SSH-使用Putty連線至安裝好的CentOS-7終端機" class="headerlink" title="(二) 安裝SSH+使用Putty連線至安裝好的CentOS 7終端機"></a>(二) 安裝SSH+使用Putty連線至安裝好的CentOS 7終端機</h1><h1 id="三-安裝好用工具-mc-unzip-nmap-wget"><a href="#三-安裝好用工具-mc-unzip-nmap-wget" class="headerlink" title="(三) 安裝好用工具 mc unzip nmap wget"></a>(三) 安裝好用工具 mc unzip nmap wget</h1><h1 id="四-安裝vsftpd-ftp，使用FileZilla連線至FTP服務"><a href="#四-安裝vsftpd-ftp，使用FileZilla連線至FTP服務" class="headerlink" title="(四) 安裝vsftpd+ftp，使用FileZilla連線至FTP服務"></a>(四) 安裝vsftpd+ftp，使用FileZilla連線至FTP服務</h1><h1 id="五-安裝ASP-Net-Core-套件-dotnet"><a href="#五-安裝ASP-Net-Core-套件-dotnet" class="headerlink" title="(五) 安裝ASP.Net Core 套件 dotnet"></a>(五) 安裝ASP.Net Core 套件 dotnet</h1><h1 id="六-安裝Ngnix網站伺服器"><a href="#六-安裝Ngnix網站伺服器" class="headerlink" title="(六) 安裝Ngnix網站伺服器"></a>(六) 安裝Ngnix網站伺服器</h1><h1 id="七-安裝MySql-使用外部Heidisql連線測試"><a href="#七-安裝MySql-使用外部Heidisql連線測試" class="headerlink" title="(七) 安裝MySql+使用外部Heidisql連線測試"></a>(七) 安裝MySql+使用外部Heidisql連線測試</h1><h1 id="八-安裝MongoDB-使用外部Robo3t連線測試"><a href="#八-安裝MongoDB-使用外部Robo3t連線測試" class="headerlink" title="(八) 安裝MongoDB+使用外部Robo3t連線測試"></a>(八) 安裝MongoDB+使用外部Robo3t連線測試</h1><h1 id="九-設定ASP-Net-Core-Service"><a href="#九-設定ASP-Net-Core-Service" class="headerlink" title="(九) 設定ASP.Net Core Service"></a>(九) 設定ASP.Net Core Service</h1><h1 id="十-設定Ngnix網站伺服器設定檔"><a href="#十-設定Ngnix網站伺服器設定檔" class="headerlink" title="(十) 設定Ngnix網站伺服器設定檔"></a>(十) 設定Ngnix網站伺服器設定檔</h1><h1 id="十一-設定防火牆"><a href="#十一-設定防火牆" class="headerlink" title="(十一) 設定防火牆"></a>(十一) 設定防火牆</h1><h1 id="十二-建立使用者帳戶"><a href="#十二-建立使用者帳戶" class="headerlink" title="(十二) 建立使用者帳戶"></a>(十二) 建立使用者帳戶</h1><h1 id="十三-設定使用者連線FTP權限與資料夾權限"><a href="#十三-設定使用者連線FTP權限與資料夾權限" class="headerlink" title="(十三) 設定使用者連線FTP權限與資料夾權限"></a>(十三) 設定使用者連線FTP權限與資料夾權限</h1><h1 id="十四-使用Visual-Studio-2017建立空白ASP-Net-Core後，使用FileZilla上傳至CentOS-7-Ngnix測試"><a href="#十四-使用Visual-Studio-2017建立空白ASP-Net-Core後，使用FileZilla上傳至CentOS-7-Ngnix測試" class="headerlink" title="(十四) 使用Visual Studio 2017建立空白ASP.Net Core後，使用FileZilla上傳至CentOS 7 Ngnix測試"></a>(十四) 使用Visual Studio 2017建立空白ASP.Net Core後，使用FileZilla上傳至CentOS 7 Ngnix測試</h1><h1 id="十五-CentOS-7-Minimal架站技術篇-結論"><a href="#十五-CentOS-7-Minimal架站技術篇-結論" class="headerlink" title="(十五) CentOS 7 Minimal架站技術篇(結論)"></a>(十五) CentOS 7 Minimal架站技術篇(結論)</h1><h1 id="可補充內容："><a href="#可補充內容：" class="headerlink" title="可補充內容："></a>可補充內容：</h1><h2 id="Putty終端機外觀主題變更"><a href="#Putty終端機外觀主題變更" class="headerlink" title="Putty終端機外觀主題變更"></a>Putty終端機外觀主題變更</h2><h2 id="建立多個網站服務的方式？"><a href="#建立多個網站服務的方式？" class="headerlink" title="建立多個網站服務的方式？"></a>建立多個網站服務的方式？</h2><h2 id="設定Domain-Name連線？"><a href="#設定Domain-Name連線？" class="headerlink" title="設定Domain Name連線？"></a>設定Domain Name連線？</h2>]]></content>
+      
+      
       <categories>
-        <category>CentOS 7 架站</category>
+          
+          <category> CentOS 7 架站 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title>CentOS 7 Minimal架站技術篇/2019-11-01_CentOS 7 Minimal架站技術篇(目錄)</title>
-    <url>/2019/11/01/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-01_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E7%9B%AE%E9%8C%84)/</url>
-    <content><![CDATA[<h1 id="一-安裝CentOS-7-Minimal-作業系統"><a href="#一-安裝CentOS-7-Minimal-作業系統" class="headerlink" title="(一) 安裝CentOS 7 Minimal 作業系統"></a>(一) 安裝CentOS 7 Minimal 作業系統</h1><h1 id="二-安裝SSH-使用Putty連線至安裝好的CentOS-7終端機"><a href="#二-安裝SSH-使用Putty連線至安裝好的CentOS-7終端機" class="headerlink" title="(二) 安裝SSH+使用Putty連線至安裝好的CentOS 7終端機"></a>(二) 安裝SSH+使用Putty連線至安裝好的CentOS 7終端機</h1><h1 id="三-安裝好用工具-mc-unzip-nmap-wget"><a href="#三-安裝好用工具-mc-unzip-nmap-wget" class="headerlink" title="(三) 安裝好用工具 mc unzip nmap wget"></a>(三) 安裝好用工具 mc unzip nmap wget</h1><h1 id="四-安裝vsftpd-ftp，使用FileZilla連線至FTP服務"><a href="#四-安裝vsftpd-ftp，使用FileZilla連線至FTP服務" class="headerlink" title="(四) 安裝vsftpd+ftp，使用FileZilla連線至FTP服務"></a>(四) 安裝vsftpd+ftp，使用FileZilla連線至FTP服務</h1><h1 id="五-安裝ASP-Net-Core-套件-dotnet"><a href="#五-安裝ASP-Net-Core-套件-dotnet" class="headerlink" title="(五) 安裝ASP.Net Core 套件 dotnet"></a>(五) 安裝ASP.Net Core 套件 dotnet</h1><h1 id="六-安裝Ngnix網站伺服器"><a href="#六-安裝Ngnix網站伺服器" class="headerlink" title="(六) 安裝Ngnix網站伺服器"></a>(六) 安裝Ngnix網站伺服器</h1><h1 id="七-安裝MySql-使用外部Heidisql連線測試"><a href="#七-安裝MySql-使用外部Heidisql連線測試" class="headerlink" title="(七) 安裝MySql+使用外部Heidisql連線測試"></a>(七) 安裝MySql+使用外部Heidisql連線測試</h1><h1 id="八-安裝MongoDB-使用外部Robo3t連線測試"><a href="#八-安裝MongoDB-使用外部Robo3t連線測試" class="headerlink" title="(八) 安裝MongoDB+使用外部Robo3t連線測試"></a>(八) 安裝MongoDB+使用外部Robo3t連線測試</h1><h1 id="九-設定ASP-Net-Core-Service"><a href="#九-設定ASP-Net-Core-Service" class="headerlink" title="(九) 設定ASP.Net Core Service"></a>(九) 設定ASP.Net Core Service</h1><h1 id="十-設定Ngnix網站伺服器設定檔"><a href="#十-設定Ngnix網站伺服器設定檔" class="headerlink" title="(十) 設定Ngnix網站伺服器設定檔"></a>(十) 設定Ngnix網站伺服器設定檔</h1><h1 id="十一-設定防火牆"><a href="#十一-設定防火牆" class="headerlink" title="(十一) 設定防火牆"></a>(十一) 設定防火牆</h1><h1 id="十二-建立使用者帳戶"><a href="#十二-建立使用者帳戶" class="headerlink" title="(十二) 建立使用者帳戶"></a>(十二) 建立使用者帳戶</h1><h1 id="十三-設定使用者連線FTP權限與資料夾權限"><a href="#十三-設定使用者連線FTP權限與資料夾權限" class="headerlink" title="(十三) 設定使用者連線FTP權限與資料夾權限"></a>(十三) 設定使用者連線FTP權限與資料夾權限</h1><h1 id="十四-使用Visual-Studio-2017建立空白ASP-Net-Core後，使用FileZilla上傳至CentOS-7-Ngnix測試"><a href="#十四-使用Visual-Studio-2017建立空白ASP-Net-Core後，使用FileZilla上傳至CentOS-7-Ngnix測試" class="headerlink" title="(十四) 使用Visual Studio 2017建立空白ASP.Net Core後，使用FileZilla上傳至CentOS 7 Ngnix測試"></a>(十四) 使用Visual Studio 2017建立空白ASP.Net Core後，使用FileZilla上傳至CentOS 7 Ngnix測試</h1><h1 id="十五-CentOS-7-Minimal架站技術篇-結論"><a href="#十五-CentOS-7-Minimal架站技術篇-結論" class="headerlink" title="(十五) CentOS 7 Minimal架站技術篇(結論)"></a>(十五) CentOS 7 Minimal架站技術篇(結論)</h1><h1 id="可補充內容："><a href="#可補充內容：" class="headerlink" title="可補充內容："></a>可補充內容：</h1><h2 id="Putty終端機外觀主題變更"><a href="#Putty終端機外觀主題變更" class="headerlink" title="Putty終端機外觀主題變更"></a>Putty終端機外觀主題變更</h2><h2 id="建立多個網站服務的方式？"><a href="#建立多個網站服務的方式？" class="headerlink" title="建立多個網站服務的方式？"></a>建立多個網站服務的方式？</h2><h2 id="設定Domain-Name連線？"><a href="#設定Domain-Name連線？" class="headerlink" title="設定Domain Name連線？"></a>設定Domain Name連線？</h2>]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2019-10-31_初次使用MWEB HEXO至github</title>
+      <link href="/2019/10/31/2019-10-31_%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8MWEB%20HEXO%E8%87%B3github/"/>
+      <url>/2019/10/31/2019-10-31_%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8MWEB%20HEXO%E8%87%B3github/</url>
+      
+        <content type="html"><![CDATA[<h1 id="發佈文章相關指令"><a href="#發佈文章相關指令" class="headerlink" title="發佈文章相關指令"></a>發佈文章相關指令</h1><p>1、打開終端機  進入使用者 johnny/blog下<br>2、清除緩存並且更新  hexo clean hexo g<br>3、本地預覽, 確認內容有沒有錯誤 hexo s<br>4、發佈上線 hexo d<br>5、如果對操作很熟悉，並且不需要預覽的話，也可以使用 hexo g -d 直接發佈</p><p><img src="/images/%E9%85%B7ma%E8%90%8C.png" alt="酷ma萌"></p>]]></content>
+      
+      
       <categories>
-        <category>CentOS 7 架站</category>
+          
+          <category> Hexo Blog </category>
+          
       </categories>
-  </entry>
+      
+      
+    </entry>
+    
+    
+  
+  
 </search>
