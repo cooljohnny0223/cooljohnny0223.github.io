@@ -307,6 +307,173 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cooljohnny.github.io/2019/11/02/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-02_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B8%80)%20%20%E5%AE%89%E8%A3%9DCentOS%207%20Minimal%20%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johnny">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/%E5%B0%8F%E7%BE%8A%E6%A1%83%E5%8F%AF%E6%84%9B%E7%85%A7.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="尚豪 Johnny'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/02/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-02_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B8%80)%20%20%E5%AE%89%E8%A3%9DCentOS%207%20Minimal%20%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1/" itemprop="url">CentOS 7 Minimal架站技術篇/2019-11-02_CentOS 7 Minimal架站技術篇(一)  安裝CentOS 7 Minimal 作業系統</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2019-11-02T00:00:00+08:00">
+                2019-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CentOS-7-%E6%9E%B6%E7%AB%99/" itemprop="url" rel="index">
+                    <span itemprop="name">CentOS 7 架站</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="環境架設"><a href="#環境架設" class="headerlink" title="環境架設"></a>環境架設</h1><p>1、Windows 10 企業版 1803<br>2、虛擬主機 VirtualBox-6.0.14-133895<br><a href="https://download.virtualbox.org/virtualbox/6.0.14/VirtualBox-6.0.14-133895-Win.exe" target="_blank" rel="noopener">https://download.virtualbox.org/virtualbox/6.0.14/VirtualBox-6.0.14-133895-Win.exe</a><br>3、CentOS-7-x86_64-Minimal-1908.iso<br><a href="http://mirror.team-cymru.com/CentOS/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso" target="_blank" rel="noopener">http://mirror.team-cymru.com/CentOS/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso</a></p>
+<h1 id="開始Centos安裝"><a href="#開始Centos安裝" class="headerlink" title="開始Centos安裝"></a>開始Centos安裝</h1><p>##開啟VirtualBox<br>1、新增一台虛擬主機<br><img src="/images/YUNYU-JOHNNY-PC-2.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>2、設置記憶體<br><img src="/images/YUNYU-JOHNNY-PC-3.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>3、設置硬碟容量<br><img src="/images/YUNYU-JOHNNY-PC-4.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>4、選擇硬碟檔類型<br><img src="/images/YUNYU-JOHNNY-PC-5.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>5、選擇存放裝置實體硬碟中<br><img src="/images/YUNYU-JOHNNY-PC-6.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>6、建立虛擬硬體大小，改為40GB<br><img src="/images/YUNYU-JOHNNY-PC-7.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>7、載入光碟檔案：CentOS-7-x86_64-Minimal-1908.iso<br><img src="/images/YUNYU-JOHNNY-PC-8.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>##開始進入安裝<br>1、選擇「Install CentOs 7」<br><img src="/images/YUNYU-JOHNNY-PC-9.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>2、出現選擇安裝語言，選擇(English」後，按下「Continue」<br><img src="/images/YUNYU-JOHNNY-PC-11.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>3、初始化設定，先選擇「DATE &amp; TIME」<br><img src="/images/YUNYU-JOHNNY-PC-12.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>4、Region選擇「Asia」, City選擇「Taipei」，然後按「Done」<br><img src="/images/YUNYU-JOHNNY-PC-13.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>5、確認時區設定已被改為「Asia/Taipei Timezone」<br><img src="/images/YUNYU-JOHNNY-PC-14.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>6、接下來設定安裝磁碟，選擇INSTALLATION DESTINATION]<br><img src="/images/YUNYU-JOHNNY-PC-15.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>7、選擇「Automatically configure partitioning」，再按「Done」<br><img src="/images/YUNYU-JOHNNY-PC-16.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>8、設定網路位址，方便連接網際網路，選擇「NETWORK &amp; HOST NAME」<br><img src="/images/YUNYU-JOHNNY-PC-17.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>9、點選「Configure…」<br><img src="/images/YUNYU-JOHNNY-PC-18.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>10 、點選「IPv4 Settings」<br><img src="/images/YUNYU-JOHNNY-PC-19.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>11、Method選擇「Manual」手動設定，按「Add」按鈕設定IP位址，並且設定DNS server位址，最後按下「Save」按鈕<br><img src="/images/YUNYU-JOHNNY-PC-20.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>12、點選開關按鈕，將網路卡設定「ON」，可看見IP已正常運作後，按「Done」<br><img src="/images/YUNYU-JOHNNY-PC-21.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>13、完成相關設定後，可看到「SOFTWARE SELECTION」預設為「Minimal Install」，接下來按「Begin Installation」按鈕來開始安裝CentOS。<br><img src="/images/YUNYU-JOHNNY-PC-22.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>14、設定root帳號密通四，點選「ROOT PASSWORD」<br><img src="/images/YUNYU-JOHNNY-PC-23.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>15、設定「Root Password」和「Confirm」的密碼一定要一樣，而且要記好，如果是要上線的機器，要設定複雜的密碼，以免被駭客猜中密碼入侵，設定好密碼後，再按「Done」<br><img src="/images/YUNYU-JOHNNY-PC-24.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>16、接下來按下「Finsh configuaration」<br><img src="/images/YUNYU-JOHNNY-PC-25.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>17、大約等待安裝時間約3分鐘左右可能更快，然後按下「Reboot」<br><img src="/images/YUNYU-JOHNNY-PC-26.jpg" alt="YUNYU-JOHNNY-P"></p>
+<p>18、如出現下圖畫面，恭禧您，已成功安裝CentOS 7 Minimal，可以繼續後面的伺服器軟體安裝或系統設定嚕！<br> <img src="/images/YUNYU-JOHNNY-PC-27.jpg" alt="YUNYU-JOHNNY-P"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cooljohnny.github.io/2019/10/31/2019-10-31_%E5%88%9D%E6%AC%A1%E4%BD%BF%E7%94%A8MWEB%20HEXO%E8%87%B3github/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1477,148 +1644,6 @@
               
               <time title="創建於" itemprop="dateCreated datePublished" datetime="2019-11-09T00:00:00+08:00">
                 2019-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分類於</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CentOS-7-%E6%9E%B6%E7%AB%99/" itemprop="url" rel="index">
-                    <span itemprop="name">CentOS 7 架站</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cooljohnny.github.io/2019/11/08/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-08_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B8%83)%20%20%E5%AE%89%E8%A3%9DMySql+%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8Heidisql%E9%80%A3%E7%B7%9A%E6%B8%AC%E8%A9%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Johnny">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/%E5%B0%8F%E7%BE%8A%E6%A1%83%E5%8F%AF%E6%84%9B%E7%85%A7.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="尚豪 Johnny'Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/08/CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87/2019-11-08_CentOS%207%20Minimal%E6%9E%B6%E7%AB%99%E6%8A%80%E8%A1%93%E7%AF%87(%E4%B8%83)%20%20%E5%AE%89%E8%A3%9DMySql+%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8Heidisql%E9%80%A3%E7%B7%9A%E6%B8%AC%E8%A9%A6/" itemprop="url">CentOS 7 Minimal架站技術篇/2019-11-08_CentOS 7 Minimal架站技術篇(七)  安裝MySql+使用外部Heidisql連線測試</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2019-11-08T00:00:00+08:00">
-                2019-11-08
               </time>
             
 
