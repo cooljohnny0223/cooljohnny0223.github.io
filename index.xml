@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>尚豪的第一篇文章</title>
+      <title>Centos 7 架站流程</title>
       <link>https://cooljohnny0223.github.io/blog/centos/post-1/</link>
       <pubDate>Thu, 23 Jul 2020 15:39:47 +0800</pubDate>
       
       <guid>https://cooljohnny0223.github.io/blog/centos/post-1/</guid>
-      <description>尚豪的第一篇文章 </description>
+      <description>(一) 安裝CentOS 7 Minimal 作業系統 (二) 安裝SSH+使用Putty連線至安裝好的CentOS 7終端機 (三) 安裝好用工具 mc unzip nmap wget (四) 安裝vsftpd+ftp，使用FileZilla連線至FTP服務 (五) 安裝ASP.</description>
     </item>
     
     <item>

@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>FTP</title>
+      <link>https://cooljohnny0223.github.io/tags/ftp/</link>
+      <pubDate>Thu, 23 Jul 2020 15:39:47 +0800</pubDate>
+      
+      <guid>https://cooljohnny0223.github.io/tags/ftp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Linux</title>
       <link>https://cooljohnny0223.github.io/tags/linux/</link>
       <pubDate>Thu, 23 Jul 2020 15:39:47 +0800</pubDate>
@@ -30,11 +39,29 @@
     </item>
     
     <item>
-      <title>Test</title>
-      <link>https://cooljohnny0223.github.io/tags/test/</link>
+      <title>MySql</title>
+      <link>https://cooljohnny0223.github.io/tags/mysql/</link>
       <pubDate>Thu, 23 Jul 2020 15:39:47 +0800</pubDate>
       
-      <guid>https://cooljohnny0223.github.io/tags/test/</guid>
+      <guid>https://cooljohnny0223.github.io/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nginx</title>
+      <link>https://cooljohnny0223.github.io/tags/nginx/</link>
+      <pubDate>Thu, 23 Jul 2020 15:39:47 +0800</pubDate>
+      
+      <guid>https://cooljohnny0223.github.io/tags/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SSH</title>
+      <link>https://cooljohnny0223.github.io/tags/ssh/</link>
+      <pubDate>Thu, 23 Jul 2020 15:39:47 +0800</pubDate>
+      
+      <guid>https://cooljohnny0223.github.io/tags/ssh/</guid>
       <description></description>
     </item>
     

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on 尚豪Code之家</title>
-    <link>https://cooljohnny0223.github.io/tags/linux/</link>
-    <description>Recent content in Linux on 尚豪Code之家</description>
+    <title>SSH on 尚豪Code之家</title>
+    <link>https://cooljohnny0223.github.io/tags/ssh/</link>
+    <description>Recent content in SSH on 尚豪Code之家</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
     <lastBuildDate>Thu, 23 Jul 2020 15:39:47 +0800</lastBuildDate>
     
-	<atom:link href="https://cooljohnny0223.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://cooljohnny0223.github.io/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>https://cooljohnny0223.github.io/blog/centos/post-1/</guid>
       <description>(一) 安裝CentOS 7 Minimal 作業系統 (二) 安裝SSH+使用Putty連線至安裝好的CentOS 7終端機 (三) 安裝好用工具 mc unzip nmap wget (四) 安裝vsftpd+ftp，使用FileZilla連線至FTP服務 (五) 安裝ASP.</description>
-    </item>
-    
-    <item>
-      <title>尚豪的第二篇文章</title>
-      <link>https://cooljohnny0223.github.io/blog/centos/post-2/</link>
-      <pubDate>Thu, 23 Jul 2020 15:39:47 +0800</pubDate>
-      
-      <guid>https://cooljohnny0223.github.io/blog/centos/post-2/</guid>
-      <description>尚豪的第二篇文章 </description>
     </item>
     
   </channel>
