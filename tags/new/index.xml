@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>New on 尚豪ㄉ網站 | 分享一些經歷的事情</title>
+    <link>https://cooljohnny0223.github.io/tags/new/</link>
+    <description>Recent content in New on 尚豪ㄉ網站 | 分享一些經歷的事情</description>
+    <generator>Hugo</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Sun, 11 May 2025 05:30:47 +0800</lastBuildDate>
+    <atom:link href="https://cooljohnny0223.github.io/tags/new/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>尚豪的第1篇文章</title>
+      <link>https://cooljohnny0223.github.io/blog/p0001/</link>
+      <pubDate>Sun, 11 May 2025 05:30:47 +0800</pubDate>
+      <guid>https://cooljohnny0223.github.io/blog/p0001/</guid>
+      <description>&lt;h1 id=&#34;尚豪的第一篇文章&#34;&gt;尚豪的第一篇文章&lt;/h1&gt;</description>
+    </item>
+    <item>
+      <title>尚豪的第2篇文章</title>
+      <link>https://cooljohnny0223.github.io/blog/p0002/</link>
+      <pubDate>Sun, 11 May 2025 05:30:47 +0800</pubDate>
+      <guid>https://cooljohnny0223.github.io/blog/p0002/</guid>
+      <description>&lt;h1 id=&#34;尚豪的第一篇文章&#34;&gt;尚豪的第一篇文章&lt;/h1&gt;</description>
+    </item>
+    <item>
+      <title>尚豪的第3篇文章</title>
+      <link>https://cooljohnny0223.github.io/blog/p0003/</link>
+      <pubDate>Sun, 11 May 2025 05:30:47 +0800</pubDate>
+      <guid>https://cooljohnny0223.github.io/blog/p0003/</guid>
+      <description>&lt;h1 id=&#34;尚豪的第一篇文章&#34;&gt;尚豪的第一篇文章&lt;/h1&gt;</description>
+    </item>
+  </channel>
+</rss>
