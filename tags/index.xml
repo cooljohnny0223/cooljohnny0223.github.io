@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 尚豪ㄉ網站 | 分享一些經歷的事情</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://cooljohnny0223.github.io/tags/</link>
     <description>Recent content in Tags on 尚豪ㄉ網站 | 分享一些經歷的事情</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
     <lastBuildDate>Sun, 11 May 2025 05:30:47 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://cooljohnny0223.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Game</title>
-      <link>http://localhost:1313/tags/game/</link>
+      <link>https://cooljohnny0223.github.io/tags/game/</link>
       <pubDate>Sun, 11 May 2025 05:30:47 +0800</pubDate>
-      <guid>http://localhost:1313/tags/game/</guid>
+      <guid>https://cooljohnny0223.github.io/tags/game/</guid>
       <description></description>
     </item>
     <item>
       <title>HTML</title>
-      <link>http://localhost:1313/tags/html/</link>
+      <link>https://cooljohnny0223.github.io/tags/html/</link>
       <pubDate>Sun, 11 May 2025 05:30:47 +0800</pubDate>
-      <guid>http://localhost:1313/tags/html/</guid>
+      <guid>https://cooljohnny0223.github.io/tags/html/</guid>
       <description></description>
     </item>
     <item>
       <title>New</title>
-      <link>http://localhost:1313/tags/new/</link>
+      <link>https://cooljohnny0223.github.io/tags/new/</link>
       <pubDate>Sun, 11 May 2025 05:30:47 +0800</pubDate>
-      <guid>http://localhost:1313/tags/new/</guid>
+      <guid>https://cooljohnny0223.github.io/tags/new/</guid>
       <description></description>
     </item>
     <item>
       <title>Python</title>
-      <link>http://localhost:1313/tags/python/</link>
+      <link>https://cooljohnny0223.github.io/tags/python/</link>
       <pubDate>Sun, 11 May 2025 05:30:47 +0800</pubDate>
-      <guid>http://localhost:1313/tags/python/</guid>
+      <guid>https://cooljohnny0223.github.io/tags/python/</guid>
       <description></description>
     </item>
   </channel>
