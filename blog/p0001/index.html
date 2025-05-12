@@ -5,7 +5,7 @@
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="文章簡介1">
+  <meta name="description" content="常用的Markdown 語法">
   <meta name="author" content="尚豪">
     
   
@@ -118,36 +118,219 @@
         <a href="/categories/%e8%b3%87%e8%a8%8a"
           class="text-primary">資訊</a>
         
-        <h2>第1篇文章</h2>
+        <h2>Markdown 語法範例</h2>
         <div class="mb-3 post-meta">
           <span>By 尚豪</span>
           
           <span class="border-bottom border-primary px-2 mx-1"></span>
-          <span>2025-05-11</span>
+          <span>2025-05-13</span>
           
         </div>
         
-        <img src="https://cooljohnny0223.github.io/images/post/post-1.jpg" class="img-fluid w-100 mb-4" alt="第1篇文章">
+        <img src="https://cooljohnny0223.github.io/images/post/p0001/Markdown.png" class="img-fluid w-100 mb-4" alt="Markdown 語法範例">
         
         <div class="content mb-5">
-          <h1 id="第1篇文章">第1篇文章</h1>
-<p>AAAAaaaa
-BBBBbbbb
-CCCCcccc</p>
+          <h1 id="markdown範例">Markdown範例</h1>
+<h6 id="1內文">1、內文</h6>
+<hr>
+<p>直接輸入文字，不用特殊符號</p>
+<h6 id="2標題">2、標題</h6>
+<hr>
+<h1 id="一級標題">一級標題</h1>
+<h2 id="二級標題">二級標題</h2>
+<h3 id="三級標題">三級標題</h3>
+<h4 id="四級標題">四級標題</h4>
+<h5 id="五級標題">五級標題</h5>
+<h6 id="六級標題">六級標題</h6>
+<h6 id="3粗體-註markdown語法缺點不可以斜體混合使用也無法改字型顏色">3、粗體 (註：Markdown語法缺點不可以斜體混合使用，也無法改字型顏色)</h6>
+<hr>
+<p>我是<strong>粗體</strong>樣式</p>
+<h6 id="4斜體-註markdown語法缺點不可以粗體混合使用也無法改字型顏色">4、斜體 (註：Markdown語法缺點不可以粗體混合使用，也無法改字型顏色)</h6>
+<hr>
+<p>我是<em>斜體</em>樣式</p>
+<h6 id="5有序序列">5、有序序列</h6>
+<hr>
 <ol>
 <li>項目1
 <ol>
 <li>子項目1</li>
-<li>子項目2</li>
+<li>子項目2
+<ol>
+<li>子子項目1</li>
+</ol>
+</li>
 </ol>
 </li>
 <li>項目2</li>
+<li>項目3</li>
 </ol>
+<h6 id="6無序序列">6、無序序列</h6>
+<hr>
 <ul>
-<li>顯示右手邊符號</li>
+<li>項目
+<ul>
+<li>子項目1</li>
+<li>子項目2
+<ul>
+<li>子子項目</li>
 </ul>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="7引用">7、引用</h6>
+<hr>
+<blockquote>
+<p>一定要抓緊每一秒鐘的時間來學習，要明白學習不是學生的專利。</p></blockquote>
+<h6 id="8超連結">8、超連結</h6>
+<hr>
+<p><a href="https://cooljohnny0223.github.io/">尚豪ㄉ網站</a></p>
+<p>跳到尚豪ㄉ網站某一篇文章</p>
+<p><a href="/blog/p0001">Markdown 語法範例</a></p>
+<h6 id="9圖片">9、圖片</h6>
+<hr>
+<p>外部連結圖片</p>
+<p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQphiN_FTS9ORniM9D81Wdf8-PGePgyW1Ur0aF9gGbCFBc9a1kkxgZeZPDvBABLg1qGjJA&amp;usqp=CAU" alt=""></p>
+<p>內部連結圖片</p>
+<p><img src="/images/logo.png" alt=""></p>
+<h6 id="10單行程式碼">10、單行程式碼</h6>
+<hr>
+<p><code>print('安安');</code></p>
+<h6 id="11多行程式碼python樣式">11、多行程式碼(python樣式)</h6>
+<hr>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#89dceb">print</span>(<span style="color:#a6e3a1">&#39;Hello 你好~&#39;</span>);
-</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#89dceb">print</span>(<span style="color:#a6e3a1">&#39;我愛您~&#39;</span>);
+</span></span></code></pre></div><h6 id="12表格">12、表格</h6>
+<hr>
+<table>
+  <thead>
+      <tr>
+          <th>Column 1</th>
+          <th>Column 2</th>
+          <th>Column 3</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Text1</td>
+          <td>Text2</td>
+          <td>Text3</td>
+      </tr>
+      <tr>
+          <td>Text4</td>
+          <td>Text5</td>
+          <td>Text6</td>
+      </tr>
+  </tbody>
+</table>
+<h6 id="13放入youtube影片">13、放入youtube影片</h6>
+<hr>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/VoAmPJLX7x8?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
+<h3 id="markdown格式寫法">Markdown(格式寫法)</h3>
+<pre tabindex="0"><code># Markdown語法
+
+###### 1、內文
+
+---
+
+直接輸入文字，不用特殊符號
+
+###### 2、標題
+
+---
+
+# 一級標題
+## 二級標題
+### 三級標題
+#### 四級標題
+##### 五級標題
+###### 六級標題
+
+
+###### 3、粗體 (註：Markdown語法缺點不可以斜體混合使用，也無法改字型顏色)
+
+---
+
+我是**粗體**樣式
+
+###### 4、斜體 (註：Markdown語法缺點不可以粗體混合使用，也無法改字型顏色)
+
+---
+
+我是*斜體*樣式
+
+###### 5、有序序列
+
+---
+
+1. 項目1
+    1. 子項目1
+    2. 子項目2
+        1. 子子項目1
+2. 項目2
+3. 項目3
+
+
+###### 6、無序序列
+
+---
+
+* 項目
+    * 子項目1
+    * 子項目2
+        * 子子項目
+
+###### 7、引用
+
+---
+
+&gt; 一定要抓緊每一秒鐘的時間來學習，要明白學習不是學生的專利。
+
+
+###### 8、超連結
+
+---
+
+[尚豪ㄉ網站](https://cooljohnny0223.github.io/)
+
+跳到尚豪ㄉ網站某一篇文章
+
+[Markdown 語法範例](/blog/p0001)
+
+
+###### 9、圖片
+
+---
+
+外部連結圖片
+
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQphiN_FTS9ORniM9D81Wdf8-PGePgyW1Ur0aF9gGbCFBc9a1kkxgZeZPDvBABLg1qGjJA&amp;usqp=CAU)
+
+內部連結圖片
+
+![](/images/logo.png)
+
+
+###### 10、單行程式碼
+
+---
+
+`print(&#39;安安&#39;);`
+
+###### 12、表格
+
+---
+
+| Column 1 | Column 2 | Column 3 |
+| --- | --- | --- |
+| Text1 | Text2 | Text3 |
+| Text4 | Text5 | Text6 |
+</code></pre><p><img src="/images/post/p0001/1.png" alt="">
+<img src="/images/post/p0001/2.png" alt=""></p>
+
         </div>
 
         
@@ -180,56 +363,13 @@ CCCCcccc</p>
       <img src="https://cooljohnny0223.github.io/images/wave/wave_01.png ">
     </div>
   </div>
+
   <div class="footer-content">
-    <div>
-      <div class="footer-left">
-        <h3>登鸛雀樓 王之渙</h3>
-        <ul class="contact-msg">
-          <li>
-            <i class="fa fa-phone" aria-hidden="true"></i>
-            <span>白日依山盡，</span>
-          </li>
-          <li>
-            <i class="fa fa-fax" aria-hidden="true"></i>
-            <span>黃河入海流。</span>
-          </li>
-          <li class="li-tips">
-            <i class="fa fa-envelope" aria-hidden="true"></i>
-            <span>欲窮千里目，</span>
-          </li>
-          <li class="li-tips">
-            <i class="fa fa-map-marker" aria-hidden="true"></i>
-
-            <span class="footer-add-text">更上一層樓。</span>
-
-          </li>
-        </ul>
+   <div class="col-12 py-1 text-center">
+        copyright © 2025 All Rights Reserved
       </div>
-
-      <div class="footer-center">
-        <h3>靜夜思 李白</h3>
-        <ul>
-          <li>
-            <i class="fa fa-phone" aria-hidden="true"></i>
-            <span>床前明月光，</span>
-          </li>
-          <li>
-            <i class="fa fa-fax" aria-hidden="true"></i>
-            <span>疑似地上霜。</span>
-          </li>
-          <li>
-            <i class="fa fa-envelope" aria-hidden="true"></i>
-            <span>舉頭望明月，</span>
-          </li>
-          <li>
-            <i class="fa fa-map" aria-hidden="true"></i>
-            <span class="footer-add-text">低頭思故鄉。</span>
-          </li>
-        </ul>
-      </div>
-
-    </div>
   </div>
+  
 </footer>
 
 
@@ -310,7 +450,7 @@ CCCCcccc</p>
   }
 
   footer {
-    margin-top: 100px;
+    margin-top: 10px;
 
   }
 

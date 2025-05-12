@@ -6,8 +6,22 @@
     <description>Recent content in Tags on 尚豪ㄉ網站 | 分享一些經歷的事情</description>
     <generator>Hugo</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 11 May 2025 05:30:47 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 13 May 2025 05:10:47 +0800</lastBuildDate>
     <atom:link href="https://cooljohnny0223.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Markdown</title>
+      <link>https://cooljohnny0223.github.io/tags/markdown/</link>
+      <pubDate>Tue, 13 May 2025 05:10:47 +0800</pubDate>
+      <guid>https://cooljohnny0223.github.io/tags/markdown/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>寫作語言</title>
+      <link>https://cooljohnny0223.github.io/tags/%E5%AF%AB%E4%BD%9C%E8%AA%9E%E8%A8%80/</link>
+      <pubDate>Tue, 13 May 2025 05:10:47 +0800</pubDate>
+      <guid>https://cooljohnny0223.github.io/tags/%E5%AF%AB%E4%BD%9C%E8%AA%9E%E8%A8%80/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Game</title>
       <link>https://cooljohnny0223.github.io/tags/game/</link>
@@ -27,13 +41,6 @@
       <link>https://cooljohnny0223.github.io/tags/new/</link>
       <pubDate>Sun, 11 May 2025 05:30:47 +0800</pubDate>
       <guid>https://cooljohnny0223.github.io/tags/new/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Python</title>
-      <link>https://cooljohnny0223.github.io/tags/python/</link>
-      <pubDate>Sun, 11 May 2025 05:30:47 +0800</pubDate>
-      <guid>https://cooljohnny0223.github.io/tags/python/</guid>
       <description></description>
     </item>
   </channel>
